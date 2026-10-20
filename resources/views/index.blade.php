@@ -312,18 +312,24 @@
     ]" />
 
     {{-- Founder quote --}}
-    <section class="section quote">
+    <section class="section founder">
         <div class="container">
-            <p class="eyebrow quote-eyebrow">- From our founder</p>
-            <div class="split quote-split">
-                <div class="split-media" style="background-image: url('%%BASE%%/assets/images/2026/06/WhatsApp-Image-2026-06-24-at-1.09.06-PM.jpeg')"></div>
-                <div class="split-body">
-                    <div class="quote-text">
-                        <p>“One team handles photography, videography, editing, drone and event coverage — no juggling vendors, no inconsistent style.”</p>
-                    </div>
-                    <div class="text"><b>– Abdul Rehman</b></div>
+            <figure class="founder-card">
+                <div class="founder-photo">
+                    <img src="%%BASE%%/assets/images/2026/06/WhatsApp-Image-2026-06-24-at-1.09.06-PM.jpeg" alt="Abdul Rehman, founder of Dubai Fotographer" loading="lazy">
                 </div>
-            </div>
+                <div class="founder-body">
+                    <p class="eyebrow">- From our founder</p>
+                    <svg class="founder-mark" viewBox="0 0 48 36" aria-hidden="true"><path d="M0 36V22C0 9.6 6.2 2.3 18.6 0l2 4.6C13.5 6.8 10 11 9.6 17H19v19H0zm27 0V22C27 9.6 33.2 2.3 45.6 0l2 4.6C40.5 6.8 37 11 36.6 17H46v19H27z"/></svg>
+                    <blockquote class="founder-quote">
+                        <p>One team handles photography, videography, editing, drone and event coverage — no juggling vendors, no inconsistent style.</p>
+                    </blockquote>
+                    <figcaption class="founder-name">
+                        <strong>Abdul Rehman</strong>
+                        <span>Founder, Dubai Fotographer · Since 2014</span>
+                    </figcaption>
+                </div>
+            </figure>
         </div>
     </section>
 
