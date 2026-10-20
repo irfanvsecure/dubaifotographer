@@ -712,22 +712,23 @@
         text-align: center;
     }
 
+    /* photo is a fixed-size card inside the panel, so long text never stretches it */
     .home-tabs .svc-panel.is-active {
         display: grid;
-        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+        align-items: start;
+        gap: 8px;
+        padding: 24px;
         box-shadow: 0 18px 40px -28px rgba(15, 15, 17, 0.45);
     }
 
     .home-tabs .svc-panel img {
-        height: 100%;
-        min-height: 520px;
+        height: 400px;
+        border-radius: 14px;
     }
 
     .home-tabs .svc-panel-body {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 44px 48px;
+        padding: 16px 24px 12px 32px;
     }
 }
 
@@ -741,12 +742,11 @@
     }
 
     .home-tabs .svc-panel img {
-        height: 380px;
-        min-height: 0;
+        height: 300px;
     }
 
     .home-tabs .svc-panel-body {
-        padding: 32px;
+        padding: 24px 8px 8px;
     }
 }
 
@@ -784,7 +784,7 @@
     }
 
     .home-tabs .svc-panel img {
-        height: 300px;
+        height: 230px;
     }
 
     .svc-panel-buttons .svc-btn {
