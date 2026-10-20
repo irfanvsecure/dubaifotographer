@@ -354,7 +354,7 @@
                     </button>
                     <button type="button" class="svc-tab" role="tab" aria-selected="false" aria-controls="home-panel-3" id="home-tab-3">
                         @include('partials.icon', ['name' => 'star'])
-                        <span>Why businesses choose us</span>
+                        <span>Why choose us</span>
                     </button>
                     <button type="button" class="svc-tab" role="tab" aria-selected="false" aria-controls="home-panel-4" id="home-tab-4">
                         @include('partials.icon', ['name' => 'file-alt'])
@@ -363,7 +363,7 @@
                 </div>
                 <div class="svc-tab-panels">
                     <div class="svc-panel is-active" role="tabpanel" id="home-panel-0" aria-labelledby="home-tab-0">
-                        <img src="%%BASE%%/assets/images/2026/07/Gemini_Generated_Image_pfort8pfort8pfor-1-e1783415922230.png" alt="Photography studio team in Dubai" loading="lazy">
+                        <img src="%%BASE%%/assets/images/2026/07/Gemini_Generated_Image_pfort8pfort8pfor-1-e1783415922230-720.webp" alt="Photography studio team in Dubai" loading="lazy">
                         <div class="svc-panel-body">
                             <h2>Photography Studio Offering End-to-End Creative Production</h2>
                             <div class="svc-panel-text"><p>Dubai Fotographer has been going for more than a decade now. Over that stretch, we’ve helped quite a mix of people get professional visual content tailored to their goals. Businesses, entrepreneurs, hospitality brands, real estate developers, event organizers, retailers, and loads of individuals who simply wanted the job done right.</p> <p>Abdul Rehman runs the company. With him are the photographers, videographers, drone operators, editors, and production specialists, and they all work as one accountable team, not a scattered group of freelancers who’ve never met. You’ll deal with a single point of contact who looks after your shoot from the very first planning call to final delivery. Because of that, the creative direction, the color grading and the quality standards don’t wander about from one project to the next.</p> <p>Our photography studio in Dubai is fully equipped for professional studio productions. But if the shoot can’t come to us, we’ll go to it. The mobile production teams spend a fair bit of time on the road, and they’re regularly over in Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, and Umm Al Quwain.</p></div>
@@ -374,7 +374,7 @@
                         </div>
                     </div>
                     <div class="svc-panel" role="tabpanel" id="home-panel-1" aria-labelledby="home-tab-1">
-                        <img src="%%BASE%%/assets/images/2026/07/Gemini_Generated_Image_5zsumq5zsumq5zsu.png" alt="Commercial photography and video production in Dubai" loading="lazy">
+                        <img src="%%BASE%%/assets/images/2026/07/Gemini_Generated_Image_5zsumq5zsumq5zsu-720.webp" alt="Commercial photography and video production in Dubai" loading="lazy">
                         <div class="svc-panel-body">
                             <h2>Commercial Photography Services &amp; Video Production for Modern Businesses</h2>
                             <div class="svc-panel-text"><p>Customers make up their minds about a brand pretty quickly, and a lot of that comes down to what they see. Visual content plays a critical role here. Good, high-quality imagery and video help businesses improve engagement and run stronger marketing campaigns, on their websites, on social media, in advertising and in their sales materials.</p> <p>Our team turns out visual assets for all kinds of jobs. There’s corporate branding and event coverage. There’s product marketing, through our dedicated <a href="%%BASE%%/product-photography-services-in-uae">product photography</a>. We do hospitality promotion for <a href="%%BASE%%/hotel-photography-service-in-uae">hotels</a> and <a href="%%BASE%%/restaurant-photography-service-in-uae">restaurants</a>, and <a href="%%BASE%%/real-estate-photography-videography-services-in-uae">real estate marketing</a> for developers and agents. On top of that, we support ongoing social media content needs and public relations campaigns, the kind where every post and every press release has to look just as good as the last one.</p> <p>We keep photography and videography in a single production workflow, and that’s what lets businesses hold onto consistent branding at every customer touchpoint. Funnily enough, plenty of clients first get in touch because they’re after a professional photographer in Dubai. It doesn’t take long before they see how useful it is to have a complete production partner who can handle both still and motion content, from start to finish.</p></div>
@@ -385,7 +385,7 @@
                         </div>
                     </div>
                     <div class="svc-panel" role="tabpanel" id="home-panel-2" aria-labelledby="home-tab-2">
-                        <img src="%%BASE%%/assets/images/2026/07/Gemini_Generated_Image_eyla0eyla0eyla0e.png" alt="Photography studio and on-location production in Dubai" loading="lazy">
+                        <img src="%%BASE%%/assets/images/2026/07/Gemini_Generated_Image_eyla0eyla0eyla0e-720.webp" alt="Photography studio and on-location production in Dubai" loading="lazy">
                         <div class="svc-panel-body">
                             <h2>Photography Services Built for Creativity, Flexibility &amp; Results</h2>
                             <div class="svc-panel-text"><p>Every project needs a different approach, and we stopped pretending otherwise a long time ago. Some clients are happiest in a controlled studio environment, where every light sits exactly where we put it. Others need a full production crew to show up at a hotel, a corporate office, a construction site, a retail location, or an event venue, and now and then that’s all in the same week.</p> <p>The Dubai photography studio is well set up for it. We’ve got professional lighting systems, a good choice of backdrop solutions, high-resolution camera equipment, and advanced editing capabilities, which, between them, cover a wide range of photography services for commercial and creative productions. Then there are the on-location teams. They can turn more or less any environment into a working production space, a boardroom, a half-built villa, a hotel lobby at 6 am before the guests come down. It doesn’t matter much where the project takes place; the visual quality stays consistent.</p> <p>Some weeks it’s <a href="%%BASE%%/portrait-photography-in-uae">corporate portraits</a>. Other weeks it’s <a href="%%BASE%%/fashion-photography-in-uae">fashion campaigns</a>, real estate marketing, <a href="%%BASE%%/luxury-food-photography-for-restaurants-hotels-and-brands">luxury food photography,</a> or drone coverage. Whatever the assignment, we build our production approach around the client’s objectives, not the other way round, and we never try to force every project into the same formula.</p></div>
