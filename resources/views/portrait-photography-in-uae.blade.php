@@ -92,6 +92,7 @@
                             <button type="button" class="svc-next">Next: date and location</button>
                         </div>
                     </fieldset>
+                    
 
                     <fieldset class="svc-step">
                         <div class="svc-field">
