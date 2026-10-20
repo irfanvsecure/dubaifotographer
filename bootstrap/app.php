@@ -13,6 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->prepend(RedirectTrailingSlash::class);
+        // hosting/CDN proxies (LiteSpeed, Cloudflare) end HTTPS before PHP; trust their headers
+        // so canonicals, sitemaps and links are built with https://
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

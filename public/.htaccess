@@ -13,13 +13,9 @@
     RewriteCond %{HTTP:x-xsrf-token} .
     RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 
-    # Add the trailing slash the live WordPress URLs use ("/about-us" -> "/about-us/"),
-    # except for real files and paths with a file extension (sitemaps, images, robots.txt)
-    RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_URI} !/$
-    RewriteCond %{REQUEST_URI} !\.[A-Za-z0-9]{1,5}$
-    RewriteRule ^ %{REQUEST_URI}/ [L,R=301]
+    # The trailing slash the live WordPress URLs use ("/about-us" -> "/about-us/") is added by
+    # App\Http\Middleware\RedirectTrailingSlash, which also works when the project root
+    # .htaccess forwards requests into public/.
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

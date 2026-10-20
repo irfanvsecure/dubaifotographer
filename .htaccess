@@ -1,0 +1,15 @@
+# Used only when the domain's document root is this project folder instead of /public
+# (e.g. the repo was cloned straight into public_html). Every request is served from
+# public/, so .env, app/, vendor/ and storage/ can never be opened from the web.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# no directory listings, and dotfiles (.env, .git) are always refused
+Options -Indexes
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
