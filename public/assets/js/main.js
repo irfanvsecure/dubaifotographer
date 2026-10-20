@@ -1,0 +1,261 @@
+/*
+ * Dubai Fotographer — site behaviour
+ * menu, carousels, counters, FAQ, reviews, lightbox and forms
+ */
+(function () {
+    "use strict";
+
+    var base = (window.siteBase || "").replace(/\/+$/, "");
+
+    function each(selector, callback, root) {
+        Array.prototype.forEach.call((root || document).querySelectorAll(selector), callback);
+    }
+
+    function onVisible(elements, callback) {
+        if (!("IntersectionObserver" in window)) {
+            elements.forEach(callback);
+            return;
+        }
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    observer.unobserve(entry.target);
+                    callback(entry.target);
+                }
+            });
+        });
+        elements.forEach(function (el) {
+            observer.observe(el);
+        });
+    }
+
+    /* ---------- Header ---------- */
+
+    var path = location.pathname.replace(/\/+$/, "") || "/";
+    each(".menu-link, .mega-link", function (link) {
+        if ((link.pathname.replace(/\/+$/, "") || "/") === path) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+        }
+    });
+
+    var header = document.querySelector(".site-header");
+    if (header) {
+        var onScroll = function () {
+            header.classList.toggle("is-scrolled", window.scrollY > 10);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+    }
+
+    // back-to-top button: appears once the visitor is well down the page
+    var toTop = document.querySelector(".to-top");
+    if (toTop) {
+        var onScrollTop = function () {
+            toTop.classList.toggle("is-visible", window.scrollY > 600);
+        };
+        window.addEventListener("scroll", onScrollTop, { passive: true });
+        onScrollTop();
+        toTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+
+    /* the mobile bar's quote button jumps to the page's own quote form when there is one */
+    if (document.getElementById("quote")) {
+        each(".site-bar-quote", function (link) {
+            link.setAttribute("href", "#quote");
+        });
+    }
+
+    function toggle(button, target) {
+        var open = button.getAttribute("aria-expanded") !== "true";
+        button.setAttribute("aria-expanded", open ? "true" : "false");
+        target.classList.toggle("is-open", open);
+    }
+
+    each(".menu-toggle", function (button) {
+        button.addEventListener("click", function () {
+            toggle(button, document.getElementById(button.getAttribute("aria-controls")));
+        });
+    });
+
+    each(".submenu-toggle", function (button) {
+        button.addEventListener("click", function () {
+            toggle(button, button.parentElement.querySelector(".mega-menu"));
+        });
+    });
+
+    each(".mega-head", function (button) {
+        button.addEventListener("click", function () {
+            toggle(button, button.nextElementSibling);
+        });
+    });
+
+    /* ---------- Logo carousels ---------- */
+
+    if (window.Swiper) {
+        each(".logo-carousel", function (carousel) {
+            new window.Swiper(carousel, {
+                slidesPerView: 2,
+                spaceBetween: 10,
+                loop: true,
+                speed: 500,
+                autoplay: { delay: 5000, disableOnInteraction: true, pauseOnMouseEnter: true },
+                breakpoints: { 768: { slidesPerView: 5 } }
+            });
+        });
+    }
+
+    /* ---------- Counters ---------- */
+
+    onVisible(Array.prototype.slice.call(document.querySelectorAll("[data-count]")), function (el) {
+        var to = parseFloat(el.getAttribute("data-count"));
+        var duration = 2000;
+        var start = null;
+        function step(time) {
+            start = start || time;
+            var progress = Math.min((time - start) / duration, 1);
+            el.textContent = Math.round(to * progress);
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        }
+        el.textContent = "0";
+        requestAnimationFrame(step);
+    });
+
+    /* ---------- FAQ: one item open at a time ---------- */
+
+    each(".faq-list", function (list) {
+        var items = list.querySelectorAll("details");
+        Array.prototype.forEach.call(items, function (item) {
+            item.addEventListener("toggle", function () {
+                if (!item.open) {
+                    return;
+                }
+                Array.prototype.forEach.call(items, function (other) {
+                    if (other !== item) {
+                        other.open = false;
+                    }
+                });
+            });
+        });
+    });
+
+    /* ---------- Google reviews ---------- */
+
+    function timeAgo(seconds) {
+        var days = Math.floor((Date.now() / 1000 - seconds) / 86400);
+        var units = [[365, "year"], [30, "month"], [7, "week"], [1, "day"]];
+        for (var i = 0; i < units.length; i++) {
+            var n = Math.floor(days / units[i][0]);
+            if (n >= 1) {
+                return n + " " + units[i][1] + (n > 1 ? "s" : "") + " ago";
+            }
+        }
+        return "today";
+    }
+
+    each(".review-date[data-time]", function (el) {
+        el.textContent = timeAgo(parseInt(el.getAttribute("data-time"), 10));
+    });
+
+    each(".review", function (review) {
+        var text = review.querySelector(".review-text");
+        var more = review.querySelector(".review-more");
+        if (!text || !more) {
+            return;
+        }
+        if (text.scrollHeight <= text.clientHeight + 1) {
+            more.style.visibility = "hidden";
+            return;
+        }
+        more.addEventListener("click", function () {
+            var open = review.classList.toggle("is-expanded");
+            more.textContent = open ? "Hide" : "Read more";
+        });
+    });
+
+    each(".reviews-slider", function (slider) {
+        var track = slider.querySelector(".reviews-track");
+        var prev = slider.querySelector(".reviews-prev");
+        var next = slider.querySelector(".reviews-next");
+        var progress = slider.querySelector(".reviews-progress span");
+        var index = 0;
+        function perView() {
+            var first = track.children[0];
+            return first ? Math.max(1, Math.round(track.clientWidth / first.offsetWidth)) : 1;
+        }
+        function go(to) {
+            var max = Math.max(0, track.children.length - perView());
+            index = to > max ? 0 : (to < 0 ? max : to);
+            track.style.transform = "translateX(" + (-index * track.children[0].offsetWidth) + "px)";
+            prev.style.display = index === 0 ? "none" : "";
+            if (progress) {
+                progress.style.width = (100 * perView() / track.children.length) + "%";
+                progress.style.left = (100 * index / track.children.length) + "%";
+            }
+        }
+        prev.addEventListener("click", function () { go(index - 1); });
+        next.addEventListener("click", function () { go(index + 1); });
+        go(0);
+        var timer = setInterval(function () { go(index + 1); }, 6000);
+        slider.addEventListener("mouseenter", function () { clearInterval(timer); });
+        window.addEventListener("resize", function () { go(index); });
+    });
+
+    /* ---------- Lightbox ---------- */
+
+    var lightbox;
+    function openLightbox(src, alt) {
+        if (!lightbox) {
+            lightbox = document.createElement("div");
+            lightbox.className = "lightbox";
+            lightbox.innerHTML = '<button type="button" aria-label="Close">&times;</button><img alt="">';
+            lightbox.addEventListener("click", function () {
+                lightbox.classList.remove("is-open");
+            });
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") {
+                    lightbox.classList.remove("is-open");
+                }
+            });
+            document.body.appendChild(lightbox);
+        }
+        var img = lightbox.querySelector("img");
+        img.src = src;
+        img.alt = alt || "";
+        lightbox.classList.add("is-open");
+    }
+
+    each("[data-lightbox] img", function (img) {
+        img.style.cursor = "zoom-in";
+        img.addEventListener("click", function () {
+            openLightbox(img.getAttribute("data-full") || img.currentSrc || img.src, img.alt);
+        });
+    });
+
+    /* ---------- Forms ---------- */
+
+    each("form[data-ajax]", function (form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            var button = form.querySelector("[type=submit]");
+            if (button) {
+                button.disabled = true;
+            }
+            fetch(base + "/booking-request", {
+                method: "POST",
+                body: new FormData(form),
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            }).then(function () {
+                window.location.href = base + "/thank-you/";
+            }).catch(function () {
+                if (button) {
+                    button.disabled = false;
+                }
+            });
+        });
+    });
+})();

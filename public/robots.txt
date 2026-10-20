@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://dubaifotographer.com/sitemap_index.xml

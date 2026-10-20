@@ -1,0 +1,145 @@
+/* Photo banner that carries the breadcrumb trail and a short hero (services-2) */
+
+.crumbs-banner {
+    min-height: 544px;
+    padding: 20px;
+    background-position: left top;
+}
+
+/* a deeper overlay so the hero copy reads well over the photo */
+.crumbs-banner::before {
+    opacity: 0.62;
+}
+
+.crumbs-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    max-width: 820px;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.crumbs {
+    color: #fcfeff;
+    font-family: var(--font-heading);
+    font-size: 22px;
+    line-height: 1.65;
+    text-align: center;
+}
+
+.crumbs a {
+    color: inherit;
+}
+
+.crumbs a:hover {
+    text-decoration: underline;
+}
+
+.crumbs-banner .crumbs-title {
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 52px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+}
+
+.crumbs-trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 26px;
+    color: #fff;
+    font-family: var(--font-text);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.crumbs-trust li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.crumbs-trust .icon {
+    width: 15px;
+    height: 15px;
+    fill: var(--gold);
+}
+
+.crumbs-buttons {
+    justify-content: center;
+}
+
+.crumbs-ghost {
+    border-color: rgba(255, 255, 255, 0.7);
+    background: transparent;
+    color: #fff;
+}
+
+/* four categories in one row on desktop */
+.crumbs-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.cta-text a {
+    color: var(--gold);
+}
+
+@media (max-width: 1024px) {
+    .crumbs-banner .crumbs-title {
+        font-size: 40px;
+    }
+
+    .crumbs-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .crumbs-banner {
+        min-height: 480px;
+        padding: 20px 0;
+    }
+
+    .crumbs {
+        font-size: 18px;
+    }
+
+    .crumbs-banner .crumbs-title {
+        font-size: 30px;
+    }
+
+    .crumbs-trust {
+        display: grid;
+        grid-template-columns: repeat(2, max-content);
+        gap: 8px 16px;
+        font-size: 13px;
+        text-align: left;
+    }
+
+    .crumbs-buttons .btn {
+        width: 100%;
+    }
+
+    .crumbs-cards {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* categories sit on cream here (the closing CTA below is black) */
+.crumbs-page .eyebrow {
+    color: var(--gold-text);
+}
+
+.crumbs-page .svo-card {
+    border-color: transparent;
+    box-shadow: var(--shadow);
+}
+
+.crumbs-page .services-book {
+    border-color: transparent;
+    background: var(--black);
+}

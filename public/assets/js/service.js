@@ -1,0 +1,105 @@
+/* Service pages: tabs, gallery filter and the 3-step quote form ([data-tabs], [data-gallery], form[data-steps]) */
+(function () {
+    "use strict";
+
+    function each(selector, callback, root) {
+        Array.prototype.forEach.call((root || document).querySelectorAll(selector), callback);
+    }
+
+    /* ---------- Tabs ---------- */
+
+    each("[data-tabs]", function (tabs) {
+        var buttons = tabs.querySelectorAll(".svc-tab");
+        var panels = tabs.querySelectorAll(".svc-panel");
+
+        function select(index, focus) {
+            Array.prototype.forEach.call(buttons, function (button, i) {
+                var active = i === index;
+                button.classList.toggle("is-active", active);
+                button.setAttribute("aria-selected", active ? "true" : "false");
+                button.tabIndex = active ? 0 : -1;
+                panels[i].classList.toggle("is-active", active);
+            });
+            if (focus) {
+                buttons[index].focus();
+            }
+        }
+
+        Array.prototype.forEach.call(buttons, function (button, i) {
+            button.tabIndex = i === 0 ? 0 : -1;
+            button.addEventListener("click", function () {
+                select(i);
+            });
+            button.addEventListener("keydown", function (event) {
+                var step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[event.key];
+                if (step) {
+                    event.preventDefault();
+                    select((i + step + buttons.length) % buttons.length, true);
+                }
+            });
+        });
+    });
+
+    /* ---------- Gallery filter ---------- */
+
+    each("[data-gallery]", function (gallery) {
+        var filters = gallery.querySelectorAll("[data-filter]");
+        Array.prototype.forEach.call(filters, function (filter) {
+            filter.addEventListener("click", function () {
+                var value = filter.getAttribute("data-filter");
+                Array.prototype.forEach.call(filters, function (other) {
+                    other.classList.toggle("is-active", other === filter);
+                });
+                each("img[data-tag]", function (img) {
+                    img.hidden = value !== "all" && img.getAttribute("data-tag") !== value;
+                }, gallery);
+            });
+        });
+    });
+
+    /* ---------- 3-step quote form ---------- */
+
+    each("form[data-steps]", function (form) {
+        var steps = form.querySelectorAll(".svc-step");
+        var bar = form.querySelector(".svc-progress span");
+        var current = 0;
+
+        function show(index) {
+            steps[current].classList.remove("is-active");
+            current = index;
+            steps[current].classList.add("is-active");
+            bar.style.width = Math.round(((current + 1) / steps.length) * 100) + "%";
+            var field = steps[current].querySelector("input, select");
+            if (field) {
+                field.focus({ preventScroll: true });
+            }
+        }
+
+        function valid(step) {
+            var fields = step.querySelectorAll("input, select");
+            for (var i = 0; i < fields.length; i++) {
+                if (!fields[i].checkValidity()) {
+                    fields[i].reportValidity();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        each(".svc-next", function (button) {
+            button.addEventListener("click", function () {
+                if (valid(steps[current]) && current < steps.length - 1) {
+                    show(current + 1);
+                }
+            });
+        }, form);
+
+        each(".svc-back", function (button) {
+            button.addEventListener("click", function () {
+                if (current > 0) {
+                    show(current - 1);
+                }
+            });
+        }, form);
+    });
+})();
