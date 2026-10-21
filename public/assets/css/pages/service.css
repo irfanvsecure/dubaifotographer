@@ -572,43 +572,89 @@
     .svc-rec svg { animation: none; }
 }
 
-/* ---------- About ---------- */
+/* ---------- About: same dark card layout as the homepage founder section ---------- */
 
 .svc-about {
     display: grid;
-    grid-template-columns: minmax(0, 579.64fr) minmax(0, 706.36fr);
+    grid-template-columns: 300px minmax(0, 1fr);
     align-items: center;
-    gap: 64px;
+    gap: 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 48px;
+    border-radius: 24px;
+    background: radial-gradient(120% 140% at 100% 0%, rgba(212, 175, 55, 0.18), transparent 55%), var(--black);
+    box-shadow: var(--shadow);
 }
 
 .svc-about-photo {
-    display: flex;
-    align-items: flex-end;
-    min-height: 426px;
-    padding: 20px;
-    border-radius: 20px;
-    background-position: center top;
+    position: relative;
+    display: block;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+    padding: 0;
+    border-radius: 18px;
+    background-position: center 20%;
     background-size: cover;
 }
 
+/* gold frame offset behind the portrait (matches .founder-photo::before) */
+.svc-about-photo::before {
+    content: "";
+    position: absolute;
+    inset: 14px -14px -14px 14px;
+    border: 1.5px solid rgba(212, 175, 55, 0.6);
+    border-radius: 18px;
+    pointer-events: none;
+}
+
 .svc-about-name {
-    width: 220px;
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1;
+    width: auto;
     padding: 14px 18px;
     border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.35);
-    color: var(--muted);
+    background: rgba(0, 0, 0, 0.72);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 14px;
     line-height: 20.3px;
+    backdrop-filter: blur(6px);
 }
 
 .svc-about-name strong {
-    color: var(--navy);
+    color: var(--gold);
+}
+
+.svc-about-copy .svc-title {
+    color: #fff;
+}
+
+.svc-about-copy .svc-text {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.svc-about-copy .svc-text a {
+    color: var(--gold);
 }
 
 .svc-about-copy .svc-text,
 .svc-about-copy .svc-buttons {
     margin-top: 20px;
+}
+
+.svc-about-copy .svc-btn-dark {
+    background: #fff;
+    border-color: #fff;
+    color: var(--navy);
+}
+
+.svc-about-copy .svc-btn-dark:hover {
+    background: rgba(255, 255, 255, 0.88);
+    border-color: rgba(255, 255, 255, 0.88);
 }
 
 /* ---------- Service tabs ---------- */
@@ -1289,11 +1335,16 @@
 
     .svc-hero-inner,
     .svc-coverage,
-    .svc-about,
     .svc-feature,
     .svc-areas,
     .svc-faq {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .svc-about {
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 40px;
+        padding: 40px;
     }
 
     .svc-facts-inner {
@@ -1437,12 +1488,33 @@
         line-height: 18px;
     }
 
+    .svc-about {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 32px 24px 28px;
+        text-align: center;
+    }
+
     .svc-about-photo {
-        min-height: 380px;
+        width: 190px;
+        margin: 0 auto;
+        aspect-ratio: 4 / 5;
+        min-height: 0;
+    }
+
+    .svc-about-photo::before {
+        inset: 10px -10px -10px 10px;
     }
 
     .svc-about-name {
-        width: 100%;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        width: auto;
+    }
+
+    .svc-about-copy .svc-buttons {
+        justify-content: center;
     }
 
     /* Tabs become an accordion: every panel sits under its own tab */

@@ -106,18 +106,9 @@
     </section>
 
     {{-- Founder --}}
-    <section class="section ab-founder">
-        <div class="container">
-            <div class="ab-founder-row">
-                <div class="ab-founder-photo" style="background-image: url('%%BASE%%/assets/images/2026/06/WhatsApp-Image-2026-06-24-at-1.09.06-PM.jpeg')"></div>
-                <div class="ab-founder-body">
-                    <p class="eyebrow">- From our founder</p>
-                    <blockquote class="ab-quote">“One team handles photography, videography, editing, drone and event coverage — no juggling vendors, no inconsistent style.”</blockquote>
-                    <p class="ab-founder-name"><b>Abdul Rehman</b> <span>Founder, Dubai Fotographer</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-founder>
+        One team handles photography, videography, editing, drone and event coverage — no juggling vendors, no inconsistent style.
+    </x-founder>
 
     {{-- Clients --}}
     <section class="section section-sand ab-clients">

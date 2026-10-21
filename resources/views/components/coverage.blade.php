@@ -1,8 +1,7 @@
-{{-- "Based in Dubai, serving all of the UAE" block with the eight location cards --}}
-@props(['eyebrow' => '- Coverage', 'title' => 'Based in Dubai, serving all of the UAE', 'dubai' => '/'])
+{{-- "Based in Dubai, serving all of the UAE" block with location cards (other Emirates) --}}
+@props(['eyebrow' => '- Coverage', 'title' => 'Based in Dubai, serving all of the UAE'])
 @php
     $places = [
-        ['Dubai', $dubai],
         ['Abu Dhabi', '/photographer-in-abu-dhabi'],
         ['Sharjah', '/locations/photographer-in-sharjah'],
         ['Ajman', '/locations/photographer-in-ajman'],
