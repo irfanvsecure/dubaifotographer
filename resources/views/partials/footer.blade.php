@@ -15,6 +15,7 @@
         ['Live Printing Photography', '/live-printing-photo-booth-for-instant-guest-keepsakes'],
         ['Multi-Camera Photography', '/multi-camera-event-recording'],
     ];
+    $recentPosts = array_slice(require resource_path('data/blog-posts.php'), 0, 6);
     $policyLinks = [
         ['Privacy Policy', '/privacy-policy'],
         ['Cookie Policy', '/cookie-policy'],
@@ -96,6 +97,14 @@
                     </span>
                 </a>
             </div>
+        </div>
+        <div class="footer-recent">
+            <p class="footer-title">Recent posts</p>
+            <ul class="footer-recent-list">
+                @foreach ($recentPosts as [$slug, $image, $alt, $title])
+                    <li><a href="%%BASE%%/{{ $slug }}">{{ $title }}</a></li>
+                @endforeach
+            </ul>
         </div>
     </div>
 

@@ -1083,6 +1083,62 @@ body:has(.rf-card) .footer-cta {
     min-width: 0;
 }
 
+.footer-recent {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+}
+
+.footer-recent-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 32px;
+}
+
+.footer-recent-list a {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+.footer-recent-list a:hover {
+    color: var(--gold-text);
+}
+
+.related-guides {
+    padding: 56px 24px;
+    background: #f7f4ee;
+}
+
+.related-guides-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.related-guides-title {
+    margin: 8px 0 18px;
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.related-guides-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+}
+
+.related-guides-list a {
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+.related-guides-list a:hover {
+    color: var(--gold-text);
+}
+
 .footer-about {
     gap: 18px;
 }
@@ -1282,6 +1338,15 @@ a.footer-contact .contact-title {
         grid-template-columns: 1fr 1fr;
         gap: 32px 20px;
         padding: 44px 20px 32px;
+    }
+
+    .footer-recent {
+        padding: 0 20px 36px;
+    }
+
+    .footer-recent-list,
+    .related-guides-list {
+        grid-template-columns: 1fr;
     }
 
     .footer-about,
