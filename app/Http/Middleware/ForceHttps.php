@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * The live host must answer on one URL. http:// and www. both 301 to
+ * The live host must answer on one URL. http://, www., and mail. all 301 to
  * https://dubaifotographer.com so crawlers do not index a second copy of every page.
- * Local hosts (localhost, 127.0.0.1) are left alone.
+ * HTTPS responses also send HSTS. Local hosts (localhost, 127.0.0.1) are left alone.
  */
 class ForceHttps
 {
@@ -17,7 +17,7 @@ class ForceHttps
     {
         $host = $request->getHost();
 
-        if (! preg_match('/^(www\.)?dubaifotographer\.com$/i', $host)) {
+        if (! preg_match('/^(www\.|mail\.)?dubaifotographer\.com$/i', $host)) {
             return $next($request);
         }
 
@@ -33,10 +33,19 @@ class ForceHttps
         $query = $request->getQueryString();
         $target = 'https://dubaifotographer.com'.$path.($query ? '?'.$query : '');
 
-        if ($request->secure() && strcasecmp($host, 'dubaifotographer.com') === 0 && $target === 'https://dubaifotographer.com'.$request->getRequestUri()) {
-            return $next($request);
+        $forwarded = strtolower($request->headers->get('X-Forwarded-Proto', ''));
+        $secure = $request->secure()
+            || $forwarded === 'https'
+            || strtolower($request->headers->get('X-Forwarded-SSL', '')) === 'on';
+        $onApex = $secure
+            && strcasecmp($host, 'dubaifotographer.com') === 0
+            && $target === 'https://dubaifotographer.com'.$request->getRequestUri();
+
+        $response = $onApex ? $next($request) : redirect()->away($target, 301);
+        if ($secure) {
+            $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
         }
 
-        return redirect()->away($target, 301);
+        return $response;
     }
 }

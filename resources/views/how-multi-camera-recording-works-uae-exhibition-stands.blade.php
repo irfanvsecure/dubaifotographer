@@ -6,6 +6,7 @@
 
 @php
     $title = 'How Multi-Camera Recording Works for UAE Exhibition Stands';
+    $prev = ['%%BASE%%/how-multi-camera-filming-improves-concert-coverage', 'How Multi-Camera Filming Enhances Live Concert Coverage in UAE'];
     $toc = [
         [1, 'How_Multi-Camera_Recording_Works_for_UAE_Exhibition_Stands', 'How Multi-Camera Recording Works for UAE Exhibition Stands'],
         [2, 'Why_Exhibition_Stands_Demand_More_Than_One_Camera_Angle', 'Why Exhibition Stands Demand More Than One Camera Angle'],
@@ -26,6 +27,7 @@
     title-id="How_Multi-Camera_Recording_Works_for_UAE_Exhibition_Stands"
     toc-class="toc-plain"
     :toc-items="$toc"
+    :prev="$prev"
     class="article-sheet article-title-dark article-text-black">
 <x-slot:media>
 <img decoding="async" width="1024" height="765" src="%%BASE%%/assets/images/2026/08/multi-camera-recording-exhibition-stands-1024x765.webp" alt="Multi Camera Event Recording services in UAE" srcset="%%BASE%%/assets/images/2026/08/multi-camera-recording-exhibition-stands-1024x765.webp 1024w, %%BASE%%/assets/images/2026/08/multi-camera-recording-exhibition-stands-300x224.webp 300w, %%BASE%%/assets/images/2026/08/multi-camera-recording-exhibition-stands-768x573.webp 768w, %%BASE%%/assets/images/2026/08/multi-camera-recording-exhibition-stands-1536x1147.webp 1536w, %%BASE%%/assets/images/2026/08/multi-camera-recording-exhibition-stands-2048x1529.webp 2048w" sizes="(max-width: 1024px) 100vw, 1024px">
@@ -94,6 +96,7 @@
 <p> </p>
 <p><strong>5. How long does it take to receive edited footage after the exhibition ends?</strong></p>
 <p>Turnaround varies by scope, but a short highlight reel is often ready within a few days, with fuller edits following shortly after.</p>
+<p>Live music uses the same multi-camera setup. Read <a href="%%BASE%%/how-multi-camera-filming-improves-concert-coverage">how multi-camera filming improves concert coverage in the UAE</a>.</p>
 @endverbatim
 </x-article>
 @endsection

@@ -48,9 +48,9 @@
                 </a>
                 <p>Dubai Fotographer is dedicated to capturing life’s most meaningful moments with creativity and elegance. From weddings to corporate events, we turn your special occasions into timeless visual stories.</p>
                 <div class="footer-social">
-                    <a class="social-facebook" href="https://www.facebook.com/100050331586482/posts/pfbid02n93L9KCoVPckPRZYq1q33i5DnjS1Jk1FRAiQCV5HPmcFRHCatDVXBpK5uYmToaWYl/?" target="_blank" rel="noopener" aria-label="Facebook">@include('partials.icon', ['name' => 'facebook'])</a>
-                    <a class="social-instagram" href="https://www.instagram.com/dubaifotographer_event/reels/" target="_blank" rel="noopener" aria-label="Instagram">@include('partials.icon', ['name' => 'instagram'])</a>
-                    <a class="social-youtube" href="https://www.youtube.com/@maniwapzstudio" target="_blank" rel="noopener" aria-label="Youtube">@include('partials.icon', ['name' => 'youtube'])</a>
+                    <a class="social-facebook" href="https://www.facebook.com/100050331586482/posts/pfbid02n93L9KCoVPckPRZYq1q33i5DnjS1Jk1FRAiQCV5HPmcFRHCatDVXBpK5uYmToaWYl/?" target="_blank" rel="noopener">@include('partials.icon', ['name' => 'facebook'])<span class="screen-reader-text">Facebook</span></a>
+                    <a class="social-instagram" href="https://www.instagram.com/dubaifotographer_event/reels/" target="_blank" rel="noopener">@include('partials.icon', ['name' => 'instagram'])<span class="screen-reader-text">Instagram</span></a>
+                    <a class="social-youtube" href="https://www.youtube.com/@maniwapzstudio" target="_blank" rel="noopener">@include('partials.icon', ['name' => 'youtube'])<span class="screen-reader-text">YouTube</span></a>
                 </div>
             </div>
 
@@ -74,27 +74,27 @@
 
             <div class="footer-col">
                 <p class="footer-title">Contact Us</p>
-                <div class="footer-contact">
-                    <a class="contact-icon" href="mailto:info@dubaifotographer.com" aria-label="Our Email">@include('partials.icon', ['name' => 'envelope'])</a>
-                    <div>
-                        <p class="contact-title"><a href="mailto:info@dubaifotographer.com">Our Email</a></p>
+                <a class="footer-contact" href="mailto:info@dubaifotographer.com">
+                    <span class="contact-icon">@include('partials.icon', ['name' => 'envelope'])</span>
+                    <span>
+                        <p class="contact-title">Our Email</p>
                         <p class="contact-text">info@dubaifotographer.com</p>
-                    </div>
-                </div>
-                <div class="footer-contact">
-                    <a class="contact-icon" href="tel:+971522946276" aria-label="Book Us">@include('partials.icon', ['name' => 'phone-alt'])</a>
-                    <div>
-                        <p class="contact-title"><a href="tel:+971522946276">Book Us</a></p>
+                    </span>
+                </a>
+                <a class="footer-contact" href="tel:+971522946276">
+                    <span class="contact-icon">@include('partials.icon', ['name' => 'phone-alt'])</span>
+                    <span>
+                        <p class="contact-title">Book Us</p>
                         <p class="contact-text">+971 52 294 6276 <br>call now</p>
-                    </div>
-                </div>
-                <div class="footer-contact">
-                    <a class="contact-icon" href="https://maps.app.goo.gl/W4PeNmG4U9xjLbFs8" aria-label="Location">@include('partials.icon', ['name' => 'map-marker-alt'])</a>
-                    <div>
-                        <p class="contact-title"><a href="https://maps.app.goo.gl/W4PeNmG4U9xjLbFs8">Location</a></p>
+                    </span>
+                </a>
+                <a class="footer-contact" href="https://maps.app.goo.gl/W4PeNmG4U9xjLbFs8">
+                    <span class="contact-icon">@include('partials.icon', ['name' => 'map-marker-alt'])</span>
+                    <span>
+                        <p class="contact-title">Location</p>
                         <p class="contact-text">Business Bay - Dubai Design District - Dubai - United Arab Emirates</p>
-                    </div>
-                </div>
+                    </span>
+                </a>
             </div>
         </div>
     </div>

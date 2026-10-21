@@ -166,6 +166,7 @@
                 <p class="svc-badge">@include('partials.icon', ['name' => 'map-marker-alt']) Serving all seven Emirates</p>
                 <h2 class="svc-title">Based in Dubai, serving all of the UAE</h2>
                 <p class="svc-text">Based in Dubai, our production crews regularly travel across the UAE to support conferences, exhibitions, government projects, and corporate organizations, delivering the same professional planning and crew wherever your event takes place.</p>
+                <p class="svc-text">See how that crew works on a <a href="%%BASE%%/how-multi-camera-filming-improves-concert-coverage">live concert</a> and on a <a href="%%BASE%%/how-multi-camera-recording-works-uae-exhibition-stands">UAE exhibition stand</a>.</p>
             </div>
             <div class="svc-places">
                 <a class="svc-place" href="%%BASE%%/photographer-in-abu-dhabi">

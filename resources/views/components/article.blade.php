@@ -170,6 +170,21 @@
                     </div>
                 </aside>
             @endif
+
+            @if ($prev || $next)
+                <nav class="post-nav" aria-label="Posts">
+                    <div class="post-nav-prev">
+                        @if ($prev)
+                            <a href="{{ $prev[0] }}" title="{{ $prev[2] ?? $prev[1] }}" rel="prev"><span class="post-nav-label" aria-hidden="true">{!! $arrowLeft !!} Previous</span><p>{{ $prev[1] }}</p></a>
+                        @endif
+                    </div>
+                    <div class="post-nav-next">
+                        @if ($next)
+                            <a href="{{ $next[0] }}" title="{{ $next[2] ?? $next[1] }}" rel="next"><span class="post-nav-label" aria-hidden="true">Next {!! $arrowRight !!}</span><p>{{ $next[1] }}</p></a>
+                        @endif
+                    </div>
+                </nav>
+            @endif
         @else
             <article class="article-main">
                 <header class="article-header">

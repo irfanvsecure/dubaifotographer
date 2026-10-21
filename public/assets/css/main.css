@@ -538,6 +538,7 @@ h1, h2, h3 {
 
 .header-call-mobile {
     display: none;
+    position: relative;
 }
 
 /* the phone number only fits next to the menu on wide screens */
@@ -1103,6 +1104,7 @@ body:has(.rf-card) .footer-cta {
 }
 
 .footer-social a {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1163,11 +1165,16 @@ body:has(.rf-card) .footer-cta {
     color: var(--gold-text);
 }
 
-.footer-contact {
+a.footer-contact {
     display: flex;
     align-items: flex-start;
     gap: 14px;
     margin-bottom: 14px;
+    color: inherit;
+}
+
+a.footer-contact .contact-title {
+    color: var(--black);
 }
 
 .contact-icon {

@@ -4,7 +4,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    RewriteCond %{HTTP_HOST} ^www\.dubaifotographer\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^(www|mail)\.dubaifotographer\.com$ [NC]
     RewriteRule ^ https://dubaifotographer.com%{REQUEST_URI} [L,R=301]
 
     RewriteCond %{HTTPS} !=on

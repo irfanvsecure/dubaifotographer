@@ -61,7 +61,7 @@
             <span class="site-title">dubaifotographer</span>
         </a>
 
-        <a class="header-call-mobile" href="tel:+971522946276" aria-label="Call us">@include('partials.icon', ['name' => 'phone-alt'])</a>
+        <a class="header-call-mobile" href="tel:+971522946276">@include('partials.icon', ['name' => 'phone-alt'])<span class="screen-reader-text">Call us</span></a>
 
         <button class="menu-toggle" type="button" aria-controls="main-menu" aria-expanded="false" aria-label="Main Menu">
             <svg class="icon-open" viewBox="0 0 20 13" aria-hidden="true"><rect width="20" height="1.5" rx="1"/><rect y="5.5" width="20" height="1.5" rx="1"/><rect y="11" width="20" height="1.5" rx="1"/></svg>
