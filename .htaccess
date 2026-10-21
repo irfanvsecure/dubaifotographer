@@ -1,11 +1,15 @@
 # Used only when the domain's document root is this project folder instead of /public
 # (e.g. the repo was cloned straight into public_html). Every request is served from
 # public/, so .env, app/, vendor/ and storage/ can never be opened from the web.
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+</IfModule>
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
     RewriteCond %{HTTP_HOST} ^(www|mail)\.dubaifotographer\.com$ [NC]
-    RewriteRule ^ https://dubaifotographer.com%{REQUEST_URI} [L,R=301]
+    RewriteRule ^ https://dubaifotographer.com%{REQUEST_URI} [L,R=301,E=HTTPS:1]
 
     RewriteCond %{HTTPS} !=on
     RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]

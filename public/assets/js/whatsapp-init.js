@@ -129,7 +129,7 @@
             "btnBottomDistance": 30,
             "isShowBtnLabel": "ON",
             "isShowGDPR": "OFF",
-            "gdprContent": "Please accept our <a href=\"https://ninjateam.org/privacy-policy/\">privacy policy</a> first to start a conversation."
+            "gdprContent": "Please accept our <a href=\"/privacy-policy/\">privacy policy</a> first to start a conversation."
         },
         "analytics": {
             "enabledGoogle": "OFF",

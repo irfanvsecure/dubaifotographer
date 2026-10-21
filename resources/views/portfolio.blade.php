@@ -38,7 +38,7 @@
             <div class="pf-head">
                 <p class="eyebrow">- Recent work</p>
                 <h2 class="title pf-title">A look at the shoots we produce across the UAE</h2>
-                <p class="text pf-intro">Events, photo booths, studio and drone work. Click any image to view it larger.</p>
+                <p class="text pf-intro">This portfolio is a sample of photography and videography we produce across Dubai and the UAE: corporate events, live print photo booths, studio sessions and licensed drone work. Click any image to view it larger. If a style matches your brief, send the date and location through the booking form and we will reply with availability and a clear quote.</p>
                 <ul class="pf-trust">
                     <li>@include('partials.icon', ['name' => 'check-circle']) Since 2014</li>
                     <li>@include('partials.icon', ['name' => 'star']) 5.0 average client rating</li>

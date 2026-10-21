@@ -11,7 +11,7 @@
 @php
     // [image, alt, url, city, text]
     $cities = [
-        ['2026/07/Dubai-skyline-Burj-Khalifa-768x512.webp', '', '/', 'Dubai', 'Our home base. Corporate events, real estate, weddings and studio work across the city.'],
+        ['2026/07/Dubai-skyline-Burj-Khalifa-768x512.webp', 'Dubai skyline with Burj Khalifa', '/', 'Dubai', 'Our home base. Corporate events, real estate, weddings and studio work across the city.'],
         ['2026/10/photographer-abu-dhabi-sheikh-zayed-grand-mosque-768x512.webp', 'Sheikh Zayed Grand Mosque reflected in a pool at sunset, Abu Dhabi', '/photographer-in-abu-dhabi', 'Abu Dhabi', 'Conferences, villa listings and family shoots from Yas Island to the Corniche.'],
         ['2026/10/photographer-sharjah-skyline-waterfront-768x576.webp', 'Sharjah waterfront skyline with high-rise buildings by the sea', '/locations/photographer-in-sharjah', 'Sharjah', 'School graduations, family portraits and product shoots across the emirate.'],
         ['2026/10/photographer-ajman-skyline-sunset-768x512.webp', 'Sun setting over the Ajman skyline', '/locations/photographer-in-ajman', 'Ajman', 'Family, maternity, newborn and small-business product photography.'],
@@ -27,7 +27,10 @@
         <div class="loc-hero-inner">
             <p class="loc-eyebrow">ALL 7 EMIRATES · ONE TEAM</p>
             <h1>Photography Services Across the UAE</h1>
-            <div class="loc-text"><p>Based in Dubai since 2014, our licensed crew covers every emirate. Choose your city to see local services, popular shoot locations and permit tips.</p></div>
+            <div class="loc-text">
+                <p>Based in Dubai since 2014, our licensed crew covers every emirate. Photography and videography for corporate events, real estate, weddings, products and portraits travel with the same team, so lighting, colour and turnaround stay consistent from Abu Dhabi to Fujairah.</p>
+                <p>Choose your city to see local services, popular shoot locations and permit tips for that Emirate.</p>
+            </div>
             @include('partials.location-buttons')
         </div>
     </section>
@@ -36,11 +39,14 @@
         <div class="container">
             <p class="loc-eyebrow">- Areas we serve</p>
             <h2 class="loc-title">Choose Your Emirate</h2>
-            <div class="loc-text loc-intro"><p>Every service we offer is available across the UAE. Each city page explains what we shoot there most, where we like to work and how travel and permits are handled.</p></div>
+            <div class="loc-text loc-intro">
+                <p>Every service we offer is available across the UAE. Each city page explains what we shoot there most, where we like to work and how travel and permits are handled.</p>
+                <p>If you already know the date and venue, send them through the booking form. We reply with crew availability and a clear quote for that location.</p>
+            </div>
             <div class="loc-grid">
                 @foreach ($cities as [$image, $alt, $url, $city, $text])
                     <article class="loc-card loc-card-4">
-                        <a href="%%BASE%%{{ $url }}"><img src="%%BASE%%/assets/images/{{ $image }}" alt="{{ $alt }}" loading="lazy"></a>
+                        <a href="%%BASE%%{{ $url }}" title="Photographer in {{ $city }}"><img src="%%BASE%%/assets/images/{{ $image }}" alt="{{ $alt }}" loading="lazy"></a>
                         <h3><a href="%%BASE%%{{ $url }}">Photographer in {{ $city }}</a></h3>
                         <div class="loc-text loc-text-small"><p>{{ $text }}</p></div>
                         <a class="btn" href="%%BASE%%{{ $url }}">View {{ $city }}</a>

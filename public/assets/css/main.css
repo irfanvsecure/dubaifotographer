@@ -539,6 +539,8 @@ h1, h2, h3 {
 .header-call-mobile {
     display: none;
     position: relative;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 /* the phone number only fits next to the menu on wide screens */
@@ -817,16 +819,12 @@ h1, h2, h3 {
     .header-call-mobile {
         display: grid;
         place-items: center;
-        width: 40px;
+        min-width: 52px;
         height: 40px;
-        border-radius: 50%;
+        padding: 0 12px;
+        border-radius: 999px;
         background: var(--gold);
         color: var(--dark);
-    }
-
-    .header-call-mobile .icon {
-        width: 16px;
-        height: 16px;
     }
 
     .header-actions,
@@ -1164,24 +1162,21 @@ body:has(.rf-card) .footer-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    min-height: 40px;
+    padding: 0 14px;
     border: 1px solid var(--line);
-    border-radius: 50%;
+    border-radius: 999px;
     background: #fff;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
-}
-
-.footer-social .icon {
-    width: 17px;
-    height: 17px;
-    fill: var(--black);
-    transition: fill 0.2s;
+    color: var(--black);
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s, color 0.2s;
 }
 
 .footer-social a:hover {
     border-color: var(--gold);
     background: var(--gold);
+    color: var(--black);
     transform: translateY(-2px);
 }
 

@@ -115,12 +115,11 @@
 <p>You have the right to control how cookies are used on your device. Most web browsers allow you to view, manage, delete, or block cookies through their privacy and security settings. You can also choose to receive notifications when cookies are being used or restrict certain types of cookies based on your preferences.</p>
 <p>If you would like to learn more about managing cookies in your browser, you can visit the official support pages for the browsers listed below:</p>
 <ul>
-<li><strong>Google Chrome:</strong><a href="https://support.google.com/chrome/answer/95647"> https://support.google.com/chrome/answer/95647</a></li>
-<li><strong>Mozilla Firefox:</strong><a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences"> https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences</a></li>
-<li><strong>Microsoft Edge:</strong>
-<a href="https://support.microsoft.com/en-US/edge/manage-cookies-in-microsoft-edge-view-allow-block-delete-and-use">https://support.microsoft.com/en-US/edge/manage-cookies-in-microsoft-edge-view-allow-block-delete-and-use</a></li>
-<li><strong>Safari:</strong><a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac">https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac</a></li>
-<li><strong>Opera:</strong><a href="https://help.opera.com/en/latest/web-preferences/"> https://help.opera.com/en/latest/web-preferences/</a></li></ul>
+<li><strong>Google Chrome:</strong> open Settings → Privacy and security → Cookies and other site data</li>
+<li><strong>Mozilla Firefox:</strong> open Settings → Privacy &amp; Security → Cookies and Site Data</li>
+<li><strong>Microsoft Edge:</strong> open Settings → Cookies and site permissions → Manage and delete cookies and site data</li>
+<li><strong>Safari:</strong> open Settings → Privacy → manage website data</li>
+<li><strong>Opera:</strong> open Settings → Privacy &amp; security → Cookies and other site data</li></ul>
 <p>In addition, certain third-party providers, such as analytics and advertising platforms, may offer their own tools that allow you to manage tracking preferences directly. Please note that restricting or disabling cookies may affect the functionality, performance, or availability of certain features on our website.</p>
 <hr>
 <h2><strong>6. Data Usage Transparency</strong></h2>
