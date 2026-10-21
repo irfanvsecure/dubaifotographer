@@ -101,7 +101,7 @@
 
     <div class="footer-bottom">
         <div class="footer-bottom-inner">
-            <p class="copyright">Copyright © {{ date('Y') }} dubaifotographer. All Rights Reserved by <a href="http://mait.ae" target="_blank" rel="noopener">MAIT</a>.</p>
+            <p class="copyright">Copyright © {{ date('Y') }} dubaifotographer. All Rights Reserved by <a href="https://mait.ae" target="_blank" rel="noopener">MAIT</a>.</p>
             <ul class="footer-policies">
                 @foreach ($policyLinks as [$label, $url])
                     <li><a href="%%BASE%%{{ $url }}">{{ $label }}</a></li>

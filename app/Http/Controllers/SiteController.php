@@ -17,7 +17,35 @@ class SiteController extends Controller
 
         $html = view($view)->render();
         $base = rtrim($request->getSchemeAndHttpHost().$request->getBaseUrl(), '/');
+        $origin = 'https://dubaifotographer.com';
         $html = str_replace('%%BASE%%', $base, $html);
+
+        // Canonical and social URL always name the HTTPS site, even on a local preview.
+        $html = preg_replace(
+            '#(<link rel="canonical" href="|<meta property="og:url" content=")https?://[^/]+#',
+            '$1'.$origin,
+            $html
+        );
+
+        // Service, contact and policy pages are not articles. Blog posts keep article
+        // because they publish a date.
+        if (! str_contains($html, 'property="article:published_time"')) {
+            $html = str_replace(
+                '<meta property="og:type" content="article"/>',
+                '<meta property="og:type" content="website"/>',
+                $html
+            );
+            $html = str_replace(
+                '<meta property="og:type" content="article" />',
+                '<meta property="og:type" content="website" />',
+                $html
+            );
+        }
+
+        if (! str_contains($html, 'property="og:image"')) {
+            $image = '<meta property="og:image" content="'.$origin.'/assets/images/2026/04/dubaifotographer-logo-e1782899876206.png" />';
+            $html = preg_replace('#<meta name="twitter:card"#', $image."\n".'$0', $html, 1);
+        }
 
         // internal page links get the trailing slash the canonical URLs use,
         // so clicking around the site never goes through a redirect

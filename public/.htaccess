@@ -5,6 +5,15 @@
 
     RewriteEngine On
 
+    # One public host. Skip when a proxy already terminated TLS (X-Forwarded-Proto: https).
+    RewriteCond %{HTTP_HOST} ^www\.dubaifotographer\.com$ [NC]
+    RewriteRule ^ https://dubaifotographer.com%{REQUEST_URI} [L,R=301]
+
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTP_HOST} ^dubaifotographer\.com$ [NC]
+    RewriteRule ^ https://dubaifotographer.com%{REQUEST_URI} [L,R=301]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

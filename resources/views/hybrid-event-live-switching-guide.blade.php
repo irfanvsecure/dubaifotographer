@@ -6,7 +6,7 @@
 
 @php
     $title = 'How Multi-Camera Live Switching Works for Hybrid UAE Events';
-    $prev = ['%%BASE%%/how-live-photo0-booths-work-at-weddings', 'How a Live Print Booth Transforms Your Wedding Day'];
+    $prev = ['%%BASE%%/how-live-photo-booths-work-at-weddings', 'How a Live Print Booth Transforms Your Wedding Day'];
     $next = ['%%BASE%%/how-to-repurpose-multi-camera-event-footage', 'How to Repurpose Multi-Camera Event Footage in UAE'];
 @endphp
 

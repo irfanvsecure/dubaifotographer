@@ -4,6 +4,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    RewriteCond %{HTTP_HOST} ^www\.dubaifotographer\.com$ [NC]
+    RewriteRule ^ https://dubaifotographer.com%{REQUEST_URI} [L,R=301]
+
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTP_HOST} ^dubaifotographer\.com$ [NC]
+    RewriteRule ^ https://dubaifotographer.com%{REQUEST_URI} [L,R=301]
+
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>

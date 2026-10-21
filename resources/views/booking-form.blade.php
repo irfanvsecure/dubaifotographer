@@ -114,11 +114,16 @@
                 <aside class="bk-aside">
                     <div class="bk-box bk-box-dark">
                         <p class="bk-box-title">Prefer to talk?</p>
-                        <p class="bk-box-text">Call or message our Arabic &amp; English crew directly.</p>
+                        <p class="bk-box-text">Call or message our Arabic and English crew directly on +971 52 294 6276. The studio is in Business Bay, Dubai Design District, and the same team shoots on location in Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain. Add the date, the venue and the kind of coverage you need. We confirm availability and a price before the shoot is locked in. Use the form for a studio hour, an event, a product day or a portrait. Say how long you need the crew and whether video is included, and we will reply with the next free slot and the fee. Nothing is confirmed until you accept that quote.</p>
                         <div class="bk-box-buttons">
                             <a class="btn" href="tel:+971522946276">@include('partials.icon', ['name' => 'phone-alt']) +971 52 294 6276</a>
                             <a class="btn btn-ghost" href="https://wa.me/971522946276" target="_blank" rel="noopener">@include('partials.icon', ['name' => 'whatsapp']) WhatsApp us</a>
                         </div>
+                    </div>
+
+                    <div class="bk-box">
+                        <p class="bk-box-title">What to include</p>
+                        <p class="bk-box-text">Name the date, the venue, and whether you need photography, video, a photo booth or a drone. If it is an event, say how many hours and whether a stage or a second room needs its own camera. For a studio booking, say how many looks or products you want covered. We use that to hold the right crew and to price the job before you confirm.</p>
                     </div>
 
                     <div class="bk-box">

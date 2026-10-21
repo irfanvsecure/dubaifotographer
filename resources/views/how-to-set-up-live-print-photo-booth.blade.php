@@ -7,7 +7,7 @@
 @php
     $title = 'How to Set Up a Live Print Photo Booth for a UAE Event';
     $prev = ['%%BASE%%/how-to-choose-instant-print-booth-uae', 'How to Choose the Right Instant Print Booth in UAE'];
-    $next = ['%%BASE%%/how-live-photo0-booths-work-at-weddings', 'How a Live Print Booth Transforms Your Wedding Day'];
+    $next = ['%%BASE%%/how-live-photo-booths-work-at-weddings', 'How a Live Print Booth Transforms Your Wedding Day'];
 @endphp
 
 @section('content')

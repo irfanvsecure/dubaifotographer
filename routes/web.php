@@ -118,7 +118,8 @@ Route::get('/flying-dress-photography-in-uae', [SiteController::class, 'show'])-
 Route::get('/frequently-asked-questions', [SiteController::class, 'show'])->defaults('view', 'frequently-asked-questions')->name('frequently-asked-questions');
 Route::get('/headshot-day-organizing-team-photography-for-uae-companies', [SiteController::class, 'show'])->defaults('view', 'headshot-day-organizing-team-photography-for-uae-companies')->name('headshot-day-organizing-team-photography-for-uae-companies');
 Route::get('/hotel-photography-service-in-uae', [SiteController::class, 'show'])->defaults('view', 'hotel-photography-service-in-uae')->name('hotel-photography-service-in-uae');
-Route::get('/how-live-photo0-booths-work-at-weddings', [SiteController::class, 'show'])->defaults('view', 'how-live-photo0-booths-work-at-weddings')->name('how-live-photo0-booths-work-at-weddings');
+Route::get('/how-live-photo0-booths-work-at-weddings', $moved('/how-live-photo-booths-work-at-weddings/'));
+Route::get('/how-live-photo-booths-work-at-weddings', [SiteController::class, 'show'])->defaults('view', 'how-live-photo0-booths-work-at-weddings')->name('how-live-photo-booths-work-at-weddings');
 Route::get('/how-live-printing-booths-boost-brand-activations', [SiteController::class, 'show'])->defaults('view', 'how-live-printing-booths-boost-brand-activations')->name('how-live-printing-booths-boost-brand-activations');
 Route::get('/how-much-does-corporate-event-photography-cost-in-the-uae', [SiteController::class, 'show'])->defaults('view', 'how-much-does-corporate-event-photography-cost-in-the-uae')->name('how-much-does-corporate-event-photography-cost-in-the-uae');
 Route::get('/how-much-does-multi-camera-event-recording-cost-in-the-uae', [SiteController::class, 'show'])->defaults('view', 'how-much-does-multi-camera-event-recording-cost-in-the-uae')->name('how-much-does-multi-camera-event-recording-cost-in-the-uae');
@@ -169,7 +170,7 @@ Route::get('/restaurant-photography-service-in-uae', [SiteController::class, 'sh
 Route::get('/school-photography-services-in-uae', [SiteController::class, 'show'])->defaults('view', 'school-photography-services-in-uae')->name('school-photography-services-in-uae');
 Route::get('/security-policy', [SiteController::class, 'show'])->defaults('view', 'security-policy')->name('security-policy');
 Route::get('/services', [SiteController::class, 'show'])->defaults('view', 'services')->name('services');
-Route::get('/services-2', [SiteController::class, 'show'])->defaults('view', 'services-2')->name('services-2');
+Route::get('/services-2', $moved('/services/'));
 Route::get('/sports-photography-services-in-uae', [SiteController::class, 'show'])->defaults('view', 'sports-photography-services-in-uae')->name('sports-photography-services-in-uae');
 Route::get('/support-policy', [SiteController::class, 'show'])->defaults('view', 'support-policy')->name('support-policy');
 Route::get('/terms-of-service', [SiteController::class, 'show'])->defaults('view', 'terms-of-service')->name('terms-of-service');

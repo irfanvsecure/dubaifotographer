@@ -127,7 +127,7 @@
             <div class="svo-head">
                 <p class="eyebrow">- Our services</p>
                 <h3 class="title light">Explore Our Full Photography and Videography</h3>
-                <p class="text light svo-head-text">Explore our full photography and videography services capturing every moment with creativity, precision, and emotion to beautifully preserve your special memories and tell your unique story.</p>
+                <p class="text light svo-head-text">Explore our full photography and videography services capturing every moment with creativity, precision, and emotion to beautifully preserve your special memories and tell your unique story. The list below covers events, drone and property, commercial and product work, portraits and photo booths. Each card opens the service page with what is included and how to book. We are based in Business Bay, Dubai Design District, and we shoot in the studio or on location across Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain. If you are not sure which service fits, send the date and the venue and we will recommend a crew and a quote. Event jobs can combine a stills photographer with a multi-camera video crew, a live stream or a print booth. Property and hospitality jobs can add drone stills where a GCAA permit is in place. Product, food, fashion and portrait work can be booked in the studio or at your location. Open a card below for what that service includes, then send the date if you want a quote for that crew.</p>
             </div>
 
             <div class="svo-cards">

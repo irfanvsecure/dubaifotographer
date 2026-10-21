@@ -233,7 +233,7 @@
             @if ($comments)
                 <div id="comments" class="comments">
                     <div id="respond" class="comment-respond">
-                        <h3 id="reply-title" class="comment-reply-title">Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="#respond" hidden>Cancel Reply</a></small></h3>
+                        <h3 id="reply-title" class="comment-reply-title">Leave a Comment <small><a id="cancel-comment-reply-link" href="#respond" hidden>Cancel Reply</a></small></h3>
                         <form action="%%BASE%%/wp-comments-post.php" method="post" class="comment-form">
                             <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span>Required fields are marked <span class="required">*</span></span></p>
                             <div class="comment-field">

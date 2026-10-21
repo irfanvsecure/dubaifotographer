@@ -34,7 +34,7 @@
                             <div class="review">
                                 <div class="review-inner">
                                     <div class="review-header">
-                                        <img class="review-avatar" src="https://lh3.googleusercontent.com/{{ $avatar }}" width="40" height="40" alt="{{ $name }} profile picture">
+                                        <img class="review-avatar" src="%%BASE%%/assets/images/reviews/google-icon.svg" width="40" height="40" alt="{{ $name }} profile picture">
                                         <div class="review-author">
                                             <div class="review-name">{{ $name }}</div>
                                             <div class="review-date" data-time="{{ $time }}">{{ date('F j, Y', $time) }}</div>

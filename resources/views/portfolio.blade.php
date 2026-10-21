@@ -11,14 +11,14 @@
 @php
     // [file, width, height, alt, category key, layout modifier]
     $images = [
-        ['image_51c54035-4c25-4d9e-8132-35bcb0b761b0_1800x1800.webp', 1284, 1271, '', 'booths', 'is-big'],
-        ['File-6870.webp', 1000, 667, '', 'events', ''],
-        ['ASF04755.webp', 1000, 667, '', 'events', ''],
-        ['on-location-photography.webp', 680, 680, '', 'booths', ''],
+        ['image_51c54035-4c25-4d9e-8132-35bcb0b761b0_1800x1800.webp', 1284, 1271, 'Guests using a live print photo booth', 'booths', 'is-big'],
+        ['File-6870.webp', 1000, 667, 'Event photography coverage in the UAE', 'events', ''],
+        ['ASF04755.webp', 1000, 667, 'Corporate event photoshoot', 'events', ''],
+        ['on-location-photography.webp', 680, 680, 'On-location photo booth setup', 'booths', ''],
         ['complete-photography-studio.webp', 780, 780, 'Photography Studio in UAE', 'studio', ''],
         ['instant-print-photobooth.webp', 630, 630, 'Live printing Photobooth', 'booths', ''],
-        ['live-printing.webp', 830, 830, '', 'booths', ''],
-        ['Drone-Photography-Dubai-Desert.webp', 1344, 768, '', 'aerial', 'is-wide'],
+        ['live-printing.webp', 830, 830, 'Instant photo prints from a live booth', 'booths', ''],
+        ['Drone-Photography-Dubai-Desert.webp', 1344, 768, 'Drone photography over the Dubai desert', 'aerial', 'is-wide'],
     ];
 
     $filters = [

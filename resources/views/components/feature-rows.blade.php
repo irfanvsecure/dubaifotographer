@@ -13,7 +13,7 @@
             @foreach ($rows as [$image, $rowEyebrow, $rowTitle, $text])
                 <div class="feature-row">
                     <figure class="feature-media">
-                        <img src="%%BASE%%/assets/images/{{ $image }}" alt="" loading="lazy">
+                        <img src="%%BASE%%/assets/images/{{ $image }}" alt="{{ $rowTitle }}" loading="lazy">
                     </figure>
                     <div class="feature-body">
                         <p class="eyebrow">{{ $rowEyebrow }}</p>
