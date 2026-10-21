@@ -2,12 +2,12 @@
 <title>Multi-Camera Event Recording in the UAE | Dubai Fotographer</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="Multi-camera event recording &amp; commercial event filming for conferences, concerts and large-scale UAE events. Live switching, fast turnaround. Book now!"/>
-<link rel="canonical" href="%%BASE%%/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events/"/>
+<link rel="canonical" href="%%BASE%%/multi-camera-event-recording/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
 <meta property="og:title" content="Multi-Camera Event Recording in the UAE | Dubai Fotographer"/>
 <meta property="og:description" content="Multi-camera event recording &amp; commercial event filming for conferences, concerts and large-scale UAE events. Live switching, fast turnaround. Book now!"/>
-<meta property="og:url" content="%%BASE%%/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events/"/>
+<meta property="og:url" content="%%BASE%%/multi-camera-event-recording/"/>
 <meta property="og:site_name" content="dubaifotographer"/>
 <meta property="article:modified_time" content="2026-10-05T11:21:00+00:00"/>
 <meta property="og:image" content="%%BASE%%/assets/images/2026/07/How-multi-camera-recording-captures-every-important-angle-1024x698.png"/>

@@ -1,11 +1,11 @@
 @verbatim
-<title>Top Benefits of Working with a Female Wedding Photographer - dubaifotographer</title>
+<title>Benefits of a Female Wedding Photographer</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="Learn why many couples prefer a female wedding photographer for bridal prep, women-only events, cultural sensitivity, and natural wedding moments."/>
 <link rel="canonical" href="%%BASE%%/female-wedding-photographer-dubai/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="Top Benefits of Working with a Female Wedding Photographer - dubaifotographer"/>
+<meta property="og:title" content="Benefits of a Female Wedding Photographer"/>
 <meta property="og:description" content="Learn why many couples prefer a female wedding photographer for bridal prep, women-only events, cultural sensitivity, and natural wedding moments."/>
 <meta property="og:url" content="%%BASE%%/female-wedding-photographer-dubai/"/>
 <meta property="og:site_name" content="dubaifotographer"/>

@@ -8,7 +8,8 @@
     RewriteRule ^ https://dubaifotographer.com%{REQUEST_URI} [L,R=301]
 
     RewriteCond %{HTTPS} !=on
-    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+    RewriteCond %{HTTP:X-Forwarded-SSL} !on [NC]
     RewriteCond %{HTTP_HOST} ^dubaifotographer\.com$ [NC]
     RewriteRule ^ https://dubaifotographer.com%{REQUEST_URI} [L,R=301]
 

@@ -1,11 +1,11 @@
 @verbatim
-<title>Influencer Photography Services in the UAE for Creators - dubaifotographer</title>
+<title>Influencer Photography Services in the UAE</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="Boost your brand with premium influencer photography in the UAE. Create scroll-stopping content that drives engagement. Book your shoot today!"/>
 <link rel="canonical" href="%%BASE%%/influencer-photography-in-uae/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="Influencer Photography Services in the UAE for Creators - dubaifotographer"/>
+<meta property="og:title" content="Influencer Photography Services in the UAE"/>
 <meta property="og:description" content="Boost your brand with premium influencer photography in the UAE. Create scroll-stopping content that drives engagement. Book your shoot today!"/>
 <meta property="og:url" content="%%BASE%%/influencer-photography-in-uae/"/>
 <meta property="og:site_name" content="dubaifotographer"/>

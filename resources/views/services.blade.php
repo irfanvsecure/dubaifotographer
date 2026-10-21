@@ -17,7 +17,7 @@
             'alt' => 'Corporate event photography in Dubai',
             'links' => [
                 ['/corporate-event-photography-videography', 'Event Photography'],
-                ['/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events', 'Multi-Camera Event'],
+                ['/multi-camera-event-recording', 'Multi-Camera Event'],
                 ['/professional-live-streaming-services-across-dubai-and-the-uae', 'Live Streaming'],
                 ['/360-video-booth-experience-for-immersive-event-engagement', '360° Videography'],
                 ['/live-printing-photo-booth-for-instant-guest-keepsakes', 'Live Photography'],

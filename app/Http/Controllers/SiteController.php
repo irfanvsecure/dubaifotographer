@@ -47,6 +47,19 @@ class SiteController extends Controller
             $html = preg_replace('#<meta name="twitter:card"#', $image."\n".'$0', $html, 1);
         }
 
+        // Styles load without blocking the first paint. Scripts wait until the HTML is parsed.
+        $html = preg_replace_callback(
+            '#<link rel="stylesheet" href="([^"]+)">#',
+            fn ($m) => '<link rel="preload" href="'.$m[1].'" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">'
+                .'<noscript><link rel="stylesheet" href="'.$m[1].'"></noscript>',
+            $html
+        );
+        $html = preg_replace(
+            '#<script(?![^>]*\b(?:defer|async)\b)(\s[^>]*\bsrc=)#i',
+            '<script defer$1',
+            $html
+        );
+
         // internal page links get the trailing slash the canonical URLs use,
         // so clicking around the site never goes through a redirect
         $html = preg_replace_callback(

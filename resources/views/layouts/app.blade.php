@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @yield('seo')
+    @if ($ga = config('services.google_analytics'))
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ $ga }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', @json($ga));
+        </script>
+    @endif
     <link rel="icon" href="%%BASE%%/assets/images/2026/04/dubai-fav-150x150.png" sizes="32x32">
     <link rel="icon" href="%%BASE%%/assets/images/2026/04/dubai-fav-300x300.png" sizes="192x192">
     <link rel="apple-touch-icon" href="%%BASE%%/assets/images/2026/04/dubai-fav-300x300.png">

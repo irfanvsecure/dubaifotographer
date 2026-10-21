@@ -1,11 +1,11 @@
 @verbatim
-<title>Maternity Photography in the UAE | Pregnancy Photoshoot - dubaifotographer</title>
+<title>Maternity Photography in the UAE</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="Professional maternity photography in the UAE with studio and outdoor pregnancy photoshoots. Book your maternity session today!"/>
 <link rel="canonical" href="%%BASE%%/maternity-photography-in-uae/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="Maternity Photography in the UAE | Pregnancy Photoshoot - dubaifotographer"/>
+<meta property="og:title" content="Maternity Photography in the UAE"/>
 <meta property="og:description" content="Professional maternity photography in the UAE with studio and outdoor pregnancy photoshoots. Book your maternity session today!"/>
 <meta property="og:url" content="%%BASE%%/maternity-photography-in-uae/"/>
 <meta property="og:site_name" content="dubaifotographer"/>

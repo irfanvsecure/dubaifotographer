@@ -1,11 +1,11 @@
 @verbatim
-<title>How Live Printing Booths Add Value to Brand Activations - dubaifotographer</title>
+<title>How Live Print Booths Help Brand Activations</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="Discover how live printing booths turn brand activations into memorable, shareable experiences with Dubai Fotographer."/>
 <link rel="canonical" href="%%BASE%%/how-live-printing-booths-boost-brand-activations/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="How Live Printing Booths Add Value to Brand Activations - dubaifotographer"/>
+<meta property="og:title" content="How Live Print Booths Help Brand Activations"/>
 <meta property="og:description" content="Discover how live printing booths turn brand activations into memorable, shareable experiences with Dubai Fotographer."/>
 <meta property="og:url" content="%%BASE%%/how-live-printing-booths-boost-brand-activations/"/>
 <meta property="og:site_name" content="dubaifotographer"/>

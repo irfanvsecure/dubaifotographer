@@ -45,7 +45,7 @@
                                         @for ($i = 1; $i <= 5; $i++)
                                             <img src="%%BASE%%/assets/images/reviews/google-star-{{ $i <= $rating ? 'f' : 'e' }}.svg" width="17" height="17" alt="Google star {{ $i }}">
                                         @endfor
-                                        <img class="review-verified" src="%%BASE%%/assets/images/reviews/verified.svg" width="15" height="15" alt="" title="Trustindex verifies that the original source of the review is Google.">
+                                        <img class="review-verified" src="%%BASE%%/assets/images/reviews/verified.svg" width="15" height="15" alt="Verified Google review" title="Trustindex verifies that the original source of the review is Google.">
                                     </span>
                                     <div class="review-text">{{ $text }}</div>
                                     <button class="review-more" type="button">Read more</button>

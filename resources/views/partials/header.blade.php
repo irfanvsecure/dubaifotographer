@@ -6,7 +6,7 @@
             ['Jewelry Photography', '/jewelry-photography-services-in-uae'],
             ['Live Streaming Photography', '/professional-live-streaming-services-across-dubai-and-the-uae'],
             ['360° Photography', '/360-video-booth-experience-for-immersive-event-engagement'],
-            ['Multi-Camera Photography', '/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events'],
+            ['Multi-Camera Photography', '/multi-camera-event-recording'],
             ['E-commerce Brands Photography', '/ecommerce-brand-photography-in-uae'],
         ],
         'Real Estate & Hospitality' => [

@@ -22,18 +22,18 @@
         ['users', 'Arabic & English crew', 'A bilingual crew for projects that need it, with one point of contact.'],
     ];
     $clients = [
-        ['amazon.png', 'amazon_logo'],
-        ['sharjah-municipality.png', 'sm-logo'],
-        ['rta.png', 'RTA-LOGO'],
-        ['dubai-health-authority.png', 'health-logo'],
-        ['emirates.png', 'Emirates_banner_logo.svg'],
-        ['etisalat.png', 'Etisalat-logo'],
-        ['du.png', 'du-logo'],
-        ['botim.png', 'botim-logo'],
-        ['isnaad.png', 'Isnaad-logo'],
-        ['imdaad.png', 'imdaad-logo'],
-        ['arabyads.jpg', 'maxresdefault'],
-        ['fcm.png', 'logo_slider_500x300'],
+        ['amazon.png', 'Amazon'],
+        ['sharjah-municipality.png', 'Sharjah Municipality'],
+        ['rta.png', 'RTA'],
+        ['dubai-health-authority.png', 'Dubai Health Authority'],
+        ['emirates.png', 'Emirates'],
+        ['etisalat.png', 'Etisalat'],
+        ['du.png', 'du'],
+        ['botim.png', 'Botim'],
+        ['isnaad.png', 'Isnaad'],
+        ['imdaad.png', 'Imdaad'],
+        ['arabyads.jpg', 'Arabyads'],
+        ['fcm.png', 'FCM'],
     ];
 @endphp
 

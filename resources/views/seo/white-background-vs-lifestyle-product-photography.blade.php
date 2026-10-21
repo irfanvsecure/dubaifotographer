@@ -1,11 +1,11 @@
 @verbatim
-<title>White Background vs Lifestyle Product Photography</title>
+<title>White vs Lifestyle Product Photos: Which Sells</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="White background or lifestyle photos, which sells more? See the ecommerce data and why the best-converting stores use both, in the right order."/>
 <link rel="canonical" href="%%BASE%%/white-background-vs-lifestyle-product-photography/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="White Background vs Lifestyle Product Photography"/>
+<meta property="og:title" content="White vs Lifestyle Product Photos: Which Sells"/>
 <meta property="og:description" content="White background or lifestyle photos, which sells more? See the ecommerce data and why the best-converting stores use both, in the right order."/>
 <meta property="og:url" content="%%BASE%%/white-background-vs-lifestyle-product-photography/"/>
 <meta property="og:site_name" content="dubaifotographer"/>

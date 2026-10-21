@@ -13,7 +13,7 @@
         ['360° Photography', '/360-video-booth-experience-for-immersive-event-engagement'],
         ['Food Photography', '/luxury-food-photography-for-restaurants-hotels-and-brands'],
         ['Live Printing Photography', '/live-printing-photo-booth-for-instant-guest-keepsakes'],
-        ['Multi-Camera Photography', '/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events'],
+        ['Multi-Camera Photography', '/multi-camera-event-recording'],
     ];
     $policyLinks = [
         ['Privacy Policy', '/privacy-policy'],

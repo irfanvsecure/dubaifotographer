@@ -1,11 +1,11 @@
 @verbatim
-<title>What to Know Before a Professional Culinary Shoot in Dubai  - dubaifotographer</title>
+<title>Culinary Shoot in Dubai: What to Plan First</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="Planning a culinary shoot in Dubai? Learn what to prepare, what to ask your studio, and how to get results. Read the full guide before you book."/>
 <link rel="canonical" href="%%BASE%%/culinary-shoot-dubai-what-to-know/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="What to Know Before a Professional Culinary Shoot in Dubai  - dubaifotographer"/>
+<meta property="og:title" content="Culinary Shoot in Dubai: What to Plan First"/>
 <meta property="og:description" content="Planning a culinary shoot in Dubai? Learn what to prepare, what to ask your studio, and how to get results. Read the full guide before you book."/>
 <meta property="og:url" content="%%BASE%%/culinary-shoot-dubai-what-to-know/"/>
 <meta property="og:site_name" content="dubaifotographer"/>

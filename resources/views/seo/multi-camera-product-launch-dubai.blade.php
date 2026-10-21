@@ -1,11 +1,11 @@
 @verbatim
-<title>Multi-Camera Setup for Product Launch Events in Dubai</title>
+<title>Product Launch Video with a Multi-Camera Crew</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="A product launch has one job: make the reveal unforgettable. See how multi-camera coverage captures the stage, reaction, and demo area in Dubai."/>
 <link rel="canonical" href="%%BASE%%/multi-camera-product-launch-dubai/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="Multi-Camera Setup for Product Launch Events in Dubai"/>
+<meta property="og:title" content="Product Launch Video with a Multi-Camera Crew"/>
 <meta property="og:description" content="A product launch has one job: make the reveal unforgettable. See how multi-camera coverage captures the stage, reaction, and demo area in Dubai."/>
 <meta property="og:url" content="%%BASE%%/multi-camera-product-launch-dubai/"/>
 <meta property="og:site_name" content="dubaifotographer"/>

@@ -390,7 +390,7 @@
                 <li><span class="svc-step-number">4</span><p>Every guest collects their printed keepsake within seconds — no waiting, no delays.</p></li>
             </ol>
             <div class="svc-steps-foot">
-                <p>At large-scale events, some clients pair the photo booth with <a href="%%BASE%%/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events">multi-camera event coverage</a> or a <a href="%%BASE%%/360-video-booth-experience-for-immersive-event-engagement">360 video booth</a>.</p>
+                <p>At large-scale events, some clients pair the photo booth with <a href="%%BASE%%/multi-camera-event-recording">multi-camera event coverage</a> or a <a href="%%BASE%%/360-video-booth-experience-for-immersive-event-engagement">360 video booth</a>.</p>
                 <a class="svc-btn svc-btn-dark" href="#quote">Start with step 1</a>
             </div>
         </div>

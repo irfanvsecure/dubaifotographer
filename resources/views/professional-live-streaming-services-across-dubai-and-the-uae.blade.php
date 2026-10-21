@@ -284,7 +284,7 @@
                         <img src="%%BASE%%/assets/images/2026/07/people-scaled.jpg" alt="Multi-camera live broadcast of a conference in Dubai" loading="lazy">
                         <div class="svc-panel-body">
                             <h3>Multi-camera broadcasts</h3>
-                            <div class="svc-panel-text"><p>One camera, stuck in one spot. That’s how a lot of events still get streamed. And honestly? Viewers get bored fast. So we use a <a href="%%BASE%%/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events">multi-camera production</a> workflow. Wide-angle views to show the whole room. Close-up shots on whoever’s talking. Cameras on the audience to catch the interaction. Presentation screens. Proper speaker coverage.</p><p>Our production team cuts between camera angles in real time, as things happen, so the switches feel natural instead of jumpy. The result looks a lot like what you’d see on professional television.</p></div>
+                            <div class="svc-panel-text"><p>One camera, stuck in one spot. That’s how a lot of events still get streamed. And honestly? Viewers get bored fast. So we use a <a href="%%BASE%%/multi-camera-event-recording">multi-camera production</a> workflow. Wide-angle views to show the whole room. Close-up shots on whoever’s talking. Cameras on the audience to catch the interaction. Presentation screens. Proper speaker coverage.</p><p>Our production team cuts between camera angles in real time, as things happen, so the switches feel natural instead of jumpy. The result looks a lot like what you’d see on professional television.</p></div>
                             <a class="svc-btn svc-btn-dark" href="#quote">Quote my broadcast</a>
                         </div>
                     </div>
@@ -397,7 +397,7 @@
                 <li><span class="svc-step-number">4</span><p>We record every event in high quality alongside the stream, and edited footage can follow with a 48-hour turnaround option.</p></li>
             </ol>
             <div class="svc-steps-foot">
-                <p>Need full recordings of every session too? See our <a href="%%BASE%%/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events">multi-camera event recording</a>.</p>
+                <p>Need full recordings of every session too? See our <a href="%%BASE%%/multi-camera-event-recording">multi-camera event recording</a>.</p>
                 <a class="svc-btn svc-btn-dark" href="#quote">Start with step 1</a>
             </div>
         </div>

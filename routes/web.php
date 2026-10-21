@@ -146,7 +146,8 @@ Route::get('/luxury-food-photography-for-restaurants-hotels-and-brands', [SiteCo
 Route::get('/maternity-photography-in-uae', [SiteController::class, 'show'])->defaults('view', 'maternity-photography-in-uae')->name('maternity-photography-in-uae');
 Route::get('/menu-photography-that-increases-orders-what-uae-restaurants-get-wrong', [SiteController::class, 'show'])->defaults('view', 'menu-photography-that-increases-orders-what-uae-restaurants-get-wrong')->name('menu-photography-that-increases-orders-what-uae-restaurants-get-wrong');
 Route::get('/multi-camera-award-ceremony-gala-uae', [SiteController::class, 'show'])->defaults('view', 'multi-camera-award-ceremony-gala-uae')->name('multi-camera-award-ceremony-gala-uae');
-Route::get('/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events', [SiteController::class, 'show'])->defaults('view', 'multi-camera-event-recording-for-conferences-concerts-and-large-scale-events')->name('multi-camera-event-recording-for-conferences-concerts-and-large-scale-events');
+Route::get('/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events', $moved('/multi-camera-event-recording/'));
+Route::get('/multi-camera-event-recording', [SiteController::class, 'show'])->defaults('view', 'multi-camera-event-recording-for-conferences-concerts-and-large-scale-events')->name('multi-camera-event-recording');
 Route::get('/multi-camera-graduation-ceremony-uae', [SiteController::class, 'show'])->defaults('view', 'multi-camera-graduation-ceremony-uae')->name('multi-camera-graduation-ceremony-uae');
 Route::get('/multi-camera-hybrid-town-hall-uae', [SiteController::class, 'show'])->defaults('view', 'multi-camera-hybrid-town-hall-uae')->name('multi-camera-hybrid-town-hall-uae');
 Route::get('/multi-camera-product-launch-dubai', [SiteController::class, 'show'])->defaults('view', 'multi-camera-product-launch-dubai')->name('multi-camera-product-launch-dubai');

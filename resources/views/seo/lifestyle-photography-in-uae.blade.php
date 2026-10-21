@@ -1,11 +1,11 @@
 @verbatim
-<title>Lifestyle Photographer in the UAE | Personal Brand Shoots - dubaifotographer</title>
+<title>Lifestyle Photography in the UAE</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="Book a professional lifestyle photographer in the UAE for branding, creative &amp; luxury shoots with Dubai Fotographer. Contact us today!"/>
 <link rel="canonical" href="%%BASE%%/lifestyle-photography-in-uae/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="Lifestyle Photographer in the UAE | Personal Brand Shoots - dubaifotographer"/>
+<meta property="og:title" content="Lifestyle Photography in the UAE"/>
 <meta property="og:description" content="Book a professional lifestyle photographer in the UAE for branding, creative &amp; luxury shoots with Dubai Fotographer. Contact us today!"/>
 <meta property="og:url" content="%%BASE%%/lifestyle-photography-in-uae/"/>
 <meta property="og:site_name" content="dubaifotographer"/>

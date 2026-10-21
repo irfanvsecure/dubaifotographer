@@ -24,7 +24,7 @@
 </x-slot:media>
 @verbatim
 <p>Events across the UAE have grown far beyond a single stage and a single storyline. A corporate summit in Dubai might run keynote speeches, panels, and networking sessions at once. A wedding in Abu Dhabi might have a groom’s entrance on one side of the venue while the bride’s procession begins on the other. When so much happens at once, one lens can’t keep up. This is exactly why <strong>multi-camera video recording</strong> has become the standard for events that want their footage to reflect the full experience, not just fragments of it.</p>
-<p>Producers who plan <a href="%%BASE%%/multi-camera-event-recording-for-conferences-concerts-and-large-scale-events">multi-angle event coverage</a> from the outset can map out every stage, entrance, and reaction before the event even begins, rather than trying to fix gaps afterward.</p>
+<p>Producers who plan <a href="%%BASE%%/multi-camera-event-recording">multi-angle event coverage</a> from the outset can map out every stage, entrance, and reaction before the event even begins, rather than trying to fix gaps afterward.</p>
 <!--toc-->
 <h2 id="The_Growing_Scale_of_Events_Across_the_UAE">The Growing Scale of Events Across the UAE</h2>
 <p>The UAE’s event calendar is one of the busiest in the region, with conferences, product launches, award nights, and large weddings happening almost every week. Venues have grown taller, wider, and more elaborate, often spanning multiple rooms or outdoor extensions within a single program. As an event’s footprint grows, so does the risk of missing something. A single operator can only face one direction at a time, a limitation that shows the moment an event has more than one focal point, which is now the norm.</p>

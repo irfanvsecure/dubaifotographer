@@ -1,11 +1,11 @@
 @verbatim
-<title>Interior Photography for Homes, Hotels &amp; Offices in the UAE - dubaifotographer</title>
+<title>Interior Photography for UAE Homes and Hotels</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="Interior photography in the UAE for homes, hotels, offices &amp; real estate spaces. Book your shoot today for premium visuals!"/>
 <link rel="canonical" href="%%BASE%%/interior-photographer-in-uae/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="Interior Photography for Homes, Hotels &amp; Offices in the UAE - dubaifotographer"/>
+<meta property="og:title" content="Interior Photography for UAE Homes and Hotels"/>
 <meta property="og:description" content="Interior photography in the UAE for homes, hotels, offices &amp; real estate spaces. Book your shoot today for premium visuals!"/>
 <meta property="og:url" content="%%BASE%%/interior-photographer-in-uae/"/>
 <meta property="og:site_name" content="dubaifotographer"/>

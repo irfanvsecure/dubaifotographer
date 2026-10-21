@@ -1,11 +1,11 @@
 @verbatim
-<title>Why Female Influencers Work Better With a Lady Photographer - dubaifotographer</title>
+<title>Why Influencers Prefer a Lady Photographer</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="Discover how a female photographer enhances influencer shoots in Dubai through comfort, creativity, and authentic lifestyle photography results."/>
 <link rel="canonical" href="%%BASE%%/why-female-photographers-improve-influencer-shoots/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="Why Female Influencers Work Better With a Lady Photographer - dubaifotographer"/>
+<meta property="og:title" content="Why Influencers Prefer a Lady Photographer"/>
 <meta property="og:description" content="Discover how a female photographer enhances influencer shoots in Dubai through comfort, creativity, and authentic lifestyle photography results."/>
 <meta property="og:url" content="%%BASE%%/why-female-photographers-improve-influencer-shoots/"/>
 <meta property="og:site_name" content="dubaifotographer"/>

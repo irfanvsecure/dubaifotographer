@@ -28,20 +28,20 @@
         ['Al Ain', '/locations/photographer-in-al-ain'],
     ];
     $clientsTop = [
-        ['amazon.png', 'amazon_logo', 70],
-        ['sharjah-municipality.png', 'sm-logo', 70],
-        ['rta.png', 'RTA-LOGO', 70],
-        ['isnaad.png', 'Isnaad-logo', 70],
-        ['imdaad.png', 'imdaad-logo', 70],
-        ['arabyads.jpg', 'maxresdefault', 70],
+        ['amazon.png', 'Amazon', 70],
+        ['sharjah-municipality.png', 'Sharjah Municipality', 70],
+        ['rta.png', 'RTA', 70],
+        ['isnaad.png', 'Isnaad', 70],
+        ['imdaad.png', 'Imdaad', 70],
+        ['arabyads.jpg', 'Arabyads', 70],
     ];
     $clientsBottom = [
-        ['dubai-health-authority.png', 'health-logo', 100],
-        ['etisalat.png', 'Etisalat-logo', 100],
-        ['du.png', 'du-logo', 100],
-        ['botim.png', 'botim-logo', 100],
-        ['emirates.png', 'Emirates_banner_logo.svg', 100],
-        ['fcm.png', 'logo_slider_500x300', 100],
+        ['dubai-health-authority.png', 'Dubai Health Authority', 100],
+        ['etisalat.png', 'Etisalat', 100],
+        ['du.png', 'du', 100],
+        ['botim.png', 'Botim', 100],
+        ['emirates.png', 'Emirates', 100],
+        ['fcm.png', 'FCM', 100],
     ];
     $services = [
         [

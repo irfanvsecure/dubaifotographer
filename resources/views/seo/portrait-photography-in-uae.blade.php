@@ -1,11 +1,11 @@
 @verbatim
-<title>Portrait Photography in the UAE | Professional Portraits - dubaifotographer</title>
+<title>Portrait Photography in the UAE</title>
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
 <meta name="description" content="Professional portrait photography in UAE for headshots, personal branding and family sessions by Dubai Fotographer. Book your session today!"/>
 <link rel="canonical" href="%%BASE%%/portrait-photography-in-uae/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:type" content="article"/>
-<meta property="og:title" content="Portrait Photography in the UAE | Professional Portraits - dubaifotographer"/>
+<meta property="og:title" content="Portrait Photography in the UAE"/>
 <meta property="og:description" content="Professional portrait photography in UAE for headshots, personal branding and family sessions by Dubai Fotographer. Book your session today!"/>
 <meta property="og:url" content="%%BASE%%/portrait-photography-in-uae/"/>
 <meta property="og:site_name" content="dubaifotographer"/>
