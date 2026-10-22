@@ -25,12 +25,12 @@ class BookingRequestMail extends Mailable
     public function envelope(): Envelope
     {
         $replyEmail = $this->fields['email'] ?? null;
-        $replyName = $this->fields['name'] ?? null;
+        $replyName = is_string($this->fields['name'] ?? null) ? $this->fields['name'] : null;
 
         return new Envelope(
             subject: 'New enquiry: '.$this->formName,
             replyTo: filter_var($replyEmail, FILTER_VALIDATE_EMAIL)
-                ? [new Address($replyEmail, is_string($replyName) ? $replyName : '')]
+                ? [new Address($replyEmail, $replyName ?: $replyEmail)]
                 : [],
         );
     }

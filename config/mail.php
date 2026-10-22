@@ -117,12 +117,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Inbox for website form enquiries
+    | Inbox for website form enquiries (not Laravel's global "to")
     |--------------------------------------------------------------------------
     */
 
-    'to' => [
-        'address' => env('MAIL_TO_ADDRESS', env('MAIL_FROM_ADDRESS', 'info@dubaifotographer.com')),
-    ],
+    'enquiry_to' => env('MAIL_TO_ADDRESS', env('MAIL_FROM_ADDRESS', 'info@dubaifotographer.com')),
 
 ];

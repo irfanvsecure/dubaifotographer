@@ -49,7 +49,7 @@ class BookingRequestController extends Controller
 
         Storage::append('booking-requests.log', json_encode($payload, JSON_UNESCAPED_UNICODE));
 
-        $to = config('mail.to.address') ?: config('mail.from.address');
+        $to = config('mail.enquiry_to') ?: config('mail.from.address');
 
         try {
             Mail::to($to)->send(new BookingRequestMail($formName, $fields, $page));
