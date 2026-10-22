@@ -21,9 +21,12 @@ class ForceHttps
             return $next($request);
         }
 
+        // Only normalize trailing slashes on GET/HEAD. Redirecting POST (forms)
+        // drops the body / CSRF and breaks booking-request on live.
         $path = $request->getPathInfo();
         if (
-            $path !== '/'
+            ($request->isMethod('GET') || $request->isMethod('HEAD'))
+            && $path !== '/'
             && ! str_ends_with($path, '/')
             && ! preg_match('/\.[A-Za-z0-9]{1,5}$/', $path)
             && $path !== '/up'

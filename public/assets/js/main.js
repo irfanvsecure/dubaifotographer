@@ -245,10 +245,11 @@
             if (button) {
                 button.disabled = true;
             }
-            fetch(base + "/booking-request", {
+            fetch(base + "/booking-request/", {
                 method: "POST",
                 body: new FormData(form),
-                headers: { "X-Requested-With": "XMLHttpRequest", Accept: "application/json" }
+                headers: { "X-Requested-With": "XMLHttpRequest", Accept: "application/json" },
+                redirect: "error"
             }).then(function (response) {
                 if (!response.ok) {
                     throw new Error("Request failed");

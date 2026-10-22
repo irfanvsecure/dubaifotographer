@@ -73,18 +73,18 @@ class BookingRequestController extends Controller
         }
 
         if ($lastError) {
-            Log::error('Booking request mail failed on all mailers', [
+            // Request is already saved in booking-requests.log — do not fail the form
+            // just because SMTP is misconfigured on the host.
+            Log::error('Booking request mail failed on all mailers (request still saved)', [
                 'error' => $lastError->getMessage(),
                 'form' => $formName,
             ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Could not send your request. Please try again or WhatsApp us.',
-            ], 500);
         }
 
-        return response()->json(['success' => true]);
+        return response()->json([
+            'success' => true,
+            'mailed' => $lastError === null,
+        ]);
     }
 
     /**
