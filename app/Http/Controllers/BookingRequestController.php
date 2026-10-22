@@ -50,12 +50,31 @@ class BookingRequestController extends Controller
         Storage::append('booking-requests.log', json_encode($payload, JSON_UNESCAPED_UNICODE));
 
         $to = config('mail.enquiry_to') ?: config('mail.from.address');
+        $mailers = array_values(array_unique(array_filter([
+            config('mail.default'),
+            // cPanel often accepts local sendmail when remote SMTP auth fails
+            'sendmail',
+        ])));
 
-        try {
-            Mail::to($to)->send(new BookingRequestMail($formName, $fields, $page));
-        } catch (Throwable $e) {
-            Log::error('Booking request mail failed', [
-                'error' => $e->getMessage(),
+        $lastError = null;
+        foreach ($mailers as $mailer) {
+            try {
+                Mail::mailer($mailer)->to($to)->send(new BookingRequestMail($formName, $fields, $page));
+                $lastError = null;
+                break;
+            } catch (Throwable $e) {
+                $lastError = $e;
+                Log::warning('Booking request mailer failed', [
+                    'mailer' => $mailer,
+                    'error' => $e->getMessage(),
+                    'form' => $formName,
+                ]);
+            }
+        }
+
+        if ($lastError) {
+            Log::error('Booking request mail failed on all mailers', [
+                'error' => $lastError->getMessage(),
                 'form' => $formName,
             ]);
 
