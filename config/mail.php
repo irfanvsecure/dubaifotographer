@@ -115,4 +115,14 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Inbox for website form enquiries
+    |--------------------------------------------------------------------------
+    */
+
+    'to' => [
+        'address' => env('MAIL_TO_ADDRESS', env('MAIL_FROM_ADDRESS', 'info@dubaifotographer.com')),
+    ],
+
 ];

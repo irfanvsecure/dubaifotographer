@@ -248,13 +248,17 @@
             fetch(base + "/booking-request", {
                 method: "POST",
                 body: new FormData(form),
-                headers: { "X-Requested-With": "XMLHttpRequest" }
-            }).then(function () {
+                headers: { "X-Requested-With": "XMLHttpRequest", Accept: "application/json" }
+            }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error("Request failed");
+                }
                 window.location.href = base + "/thank-you/";
             }).catch(function () {
                 if (button) {
                     button.disabled = false;
                 }
+                alert("Could not send your request. Please try again or WhatsApp us on +971 52 294 6276.");
             });
         });
     });

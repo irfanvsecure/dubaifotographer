@@ -1,24 +1,15 @@
 <?php
 
+use App\Http\Controllers\BookingRequestController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
 // 301 to a path on this site; built by hand because redirect() drops the trailing slash
 $moved = fn (string $to) => fn (Request $request) => redirect()->away(rtrim($request->getSchemeAndHttpHost().$request->getBaseUrl(), "/").$to, 301);
 
-// Booking / quote forms (logged to storage/app/booking-requests.log)
-Route::post('/booking-request', function (Request $request) {
-    Storage::append('booking-requests.log', json_encode([
-        'at' => now()->toIso8601String(),
-        'form' => $request->input('form_name'),
-        'fields' => $request->except(['_token', 'form_name']),
-        'page' => $request->headers->get('referer'),
-    ], JSON_UNESCAPED_UNICODE));
-
-    return response()->json(['success' => true]);
-})->name('booking-request');
+// Booking / quote / contact forms → email info@ + log
+Route::post('/booking-request', BookingRequestController::class)->name('booking-request');
 
 Route::get('/areas-we-serve', $moved('/locations/'));
 Route::get('/portfolio-2', $moved('/portfolio/'));
