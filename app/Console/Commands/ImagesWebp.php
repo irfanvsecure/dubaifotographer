@@ -54,7 +54,15 @@ class ImagesWebp extends Command
             imagealphablending($image, false);
             imagesavealpha($image, true);
             if (imagesx($image) > (int) $this->option('max-width')) {
-                $image = imagescale($image, (int) $this->option('max-width'), -1, IMG_BICUBIC);
+                // GD returns false when it runs out of memory on a very large photo: skip that one
+                $scaled = @imagescale($image, (int) $this->option('max-width'), -1, IMG_BICUBIC);
+                imagedestroy($image);
+                if (! $scaled) {
+                    $this->warn('cannot resize (try php -d memory_limit=1024M artisan images:webp) '.$file);
+
+                    continue;
+                }
+                $image = $scaled;
                 imagealphablending($image, false);
                 imagesavealpha($image, true);
             }

@@ -66,8 +66,11 @@ class ImageUploader
         imagesavealpha($image, true);
 
         if (imagesx($image) > $maxWidth) {
-            $scaled = imagescale($image, $maxWidth, -1, IMG_BICUBIC);
+            $scaled = @imagescale($image, $maxWidth, -1, IMG_BICUBIC);
             imagedestroy($image);
+            if (! $scaled) {
+                throw new RuntimeException('The image is too large to resize on this server. Upload a smaller version (under about 4000px wide).');
+            }
             $image = $scaled;
             imagealphablending($image, false);
             imagesavealpha($image, true);
