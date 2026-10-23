@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * /api/mcp: "Authorization: Bearer <token>". Only SHA-256 hashes of tokens are stored
+ * /api/mcp: "Authorization: Bearer <token>", or /api/mcp/<token> for claude.ai connectors that
+ * cannot send headers. Only SHA-256 hashes of tokens are stored
  * (mcp_tokens, filled from MCP_TOKEN by `php artisan mcp:token`). Wrong tokens are limited
  * to 10 tries a minute per IP, valid ones to 120 calls a minute per token.
  */
@@ -22,7 +23,8 @@ class AuthenticateMcpToken
             return $this->deny('Too many failed attempts. Try again in a minute.', 429);
         }
 
-        $token = (string) $request->bearerToken();
+        // Claude Code sends a header; claude.ai web connectors can only use a URL (/api/mcp/<token>)
+        $token = (string) ($request->bearerToken() ?: $request->route('key'));
         $record = $token === '' ? null : McpToken::query()->where('token_hash', McpToken::hash($token))->first();
         if (! $record) {
             RateLimiter::hit($ipKey, 60);

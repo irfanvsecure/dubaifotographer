@@ -15,12 +15,16 @@ class McpServerTest extends TestCase
 
     private const TOKEN = 'test-token-0123456789-0123456789-0123456789';
 
+    // tokens from mcp:token --generate are letters and digits, so they fit in a URL
+    private const TOKEN_URL_SAFE = 'TestToken0123456789abcdefghijklmnopqrstuvwxyz';
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->withoutMiddleware(RedirectTrailingSlash::class);
         $this->artisan('content:import')->assertSuccessful();
         McpToken::query()->create(['name' => 'test', 'token_hash' => McpToken::hash(self::TOKEN)]);
+        McpToken::query()->create(['name' => 'test-url', 'token_hash' => McpToken::hash(self::TOKEN_URL_SAFE)]);
     }
 
     private function rpc(string $method, array $params = [], ?string $token = self::TOKEN)
@@ -42,6 +46,15 @@ class McpServerTest extends TestCase
     {
         $this->rpc('tools/list', [], null)->assertStatus(401);
         $this->rpc('tools/list', [], 'wrong')->assertStatus(401);
+    }
+
+    public function test_the_token_can_be_part_of_the_url_for_claude_ai(): void
+    {
+        $body = ['jsonrpc' => '2.0', 'id' => 1, 'method' => 'tools/list', 'params' => (object) []];
+        $headers = ['Accept' => 'application/json, text/event-stream'];
+
+        $this->withHeaders($headers)->postJson('/api/mcp/'.self::TOKEN_URL_SAFE, $body)->assertOk();
+        $this->withHeaders($headers)->postJson('/api/mcp/'.str_repeat('x', 40), $body)->assertStatus(401);
     }
 
     public function test_all_tools_are_listed(): void

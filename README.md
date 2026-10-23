@@ -62,6 +62,16 @@ claude mcp add --transport http dubaifotographer https://dubaifotographer.com/ap
 
 For a local test: `php artisan serve --port=8765`, then use `http://127.0.0.1:8765/api/mcp` instead.
 
+### Connect claude.ai (web)
+
+claude.ai connectors cannot send a header, so the token goes in the URL. In claude.ai: **Settings → Connectors → Add custom connector**. Give it a name ("Dubai Fotographer") and this URL, with no OAuth settings:
+
+```
+https://dubaifotographer.com/api/mcp/<MCP_TOKEN>
+```
+
+Anyone with that URL can edit the site, so treat it like a password. Rotating `MCP_TOKEN` (see above) changes the URL too.
+
 ### Tools
 
 Every change is written to `activity_log` with its old and new values.
