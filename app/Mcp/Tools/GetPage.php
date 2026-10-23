@@ -16,11 +16,14 @@ class GetPage extends SiteTool
     public function handle(Request $request): Response
     {
         $data = $request->validate([
-            'id' => 'required_without:slug|nullable|integer',
-            'slug' => 'required_without:id|nullable|string',
+            'id' => 'nullable|integer',
+            'slug' => 'nullable|string',
         ]);
+        if (! isset($data['id']) && ! array_key_exists('slug', $data)) {
+            return Response::error('Give id or slug.');
+        }
         $page = Page::query()->with('seo')
-            ->when(isset($data['id']), fn ($q) => $q->whereKey($data['id']), fn ($q) => $q->where('slug', trim((string) $data['slug'], '/')))
+            ->when(isset($data['id']), fn ($q) => $q->whereKey($data['id']), fn ($q) => $q->where('slug', trim((string) ($data['slug'] ?? ''), '/')))
             ->first();
 
         return $page ? $this->json($this->pageArray($page, true)) : Response::error('Page not found.');

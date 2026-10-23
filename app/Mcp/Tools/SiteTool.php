@@ -151,7 +151,9 @@ abstract class SiteTool extends Tool
             'content_editable' => $page->template === 'page',
             'note' => $page->template === 'page'
                 ? 'Body HTML is `content`. Links to this site use %%BASE%% (e.g. %%BASE%%/contact-us/).'
-                : "Designed page: the body lives in the Blade template \"{$page->template}\". Through MCP you can change title, h1, slug, status, parent, sort order and SEO.",
+                : ($page->sections()->exists()
+                    ? 'Designed page: edit the body with get_page_sections / update_page_section; title, h1, slug, status and SEO are edited here.'
+                    : "Designed page not converted to sections yet: the body is in the Blade template \"{$page->template}\". Title, h1, slug, status, parent, sort order and SEO are editable."),
             'parent_id' => $page->parent_id,
             'sort_order' => $page->sort_order,
             'version' => $this->version($page),

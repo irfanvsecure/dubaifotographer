@@ -90,6 +90,21 @@ Every change is written to `activity_log` with its old and new values.
 | `delete_blog` | To the trash; needs `confirm: true` |
 | `list_categories` / `create_category` / `update_category` | Blog categories (and tags in use) |
 
+**Page sections** (body of designed pages; the homepage is converted so far)
+
+| Tool | What it does |
+|---|---|
+| `get_page_sections` | Sections of a page with their fields and `version`; `include_types: true` lists the section types |
+| `update_page_section` | Change fields of one section (needs `version`); list fields are replaced whole |
+| `add_page_section` | New section from a predefined type, after a given section |
+| `delete_page_section` | Remove a section (needs `version` and `confirm: true`) |
+| `reorder_page_sections` | New order of all sections (needs `confirm: true`) |
+| `list_section_revisions` / `restore_section_revision` | History of every section change; put any earlier version back |
+
+Every section change keeps the previous content as a revision. HTML fields allow only `p, a, strong, em, ul, li, br, h2, h3`; scripts, iframes, styles and event attributes are stripped. Changing a FAQ section rewrites the page's FAQPage schema.
+
+The section types and their fields are defined in `app/Support/Sections/SectionTypes.php`. Each type is drawn by `resources/views/sections/<type>.blade.php`. To convert another page, write `database/content/sections/<slug>.php` (see `home.php`), make its template `@include('partials.page-sections')`, then run `php artisan content:sections <slug>`.
+
 **SEO**
 
 | Tool | What it does |
@@ -174,7 +189,7 @@ php artisan view:cache
 
 `content:import` never overwrites rows that already exist, so running it again is safe. It reads `resources/views/*` (pages and posts), `resources/views/seo/*` (the old Yoast tags) and `resources/data/blog-posts.php`. Keep those files until the live import is done.
 
-Later deploys: `git pull`, `composer install --no-dev`, `php artisan migrate --force`, `php artisan images:webp`, then the three cache commands.
+Later deploys: `git pull`, `composer install --no-dev`, `php artisan migrate --force`, `php artisan content:sections` (moves newly converted pages into sections; pages that already have sections are skipped), `php artisan images:webp`, then the three cache commands.
 
 After editing CSS or JS in `public/assets`: `node scripts/minify-assets.mjs` (rebuilds the `.min` files the site serves).
 

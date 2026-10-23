@@ -30,7 +30,9 @@ class UpdatePage extends SiteTool
         }
         $this->checkVersion($page, $request, 'get_page');
         if (isset($data['content']) && $page->template !== 'page') {
-            return Response::error("This page's body is designed in the Blade template \"{$page->template}\" and cannot be replaced here. You can change title, h1, slug, status and SEO.");
+            return Response::error($page->sections()->exists()
+                ? 'This page is built from sections: edit its body with get_page_sections and update_page_section.'
+                : "This page's body is still in the Blade template \"{$page->template}\" (not converted to sections yet). You can change title, h1, slug, status and SEO.");
         }
         if (isset($data['slug']) && $data['slug'] !== $page->slug) {
             if ($page->slug === '') {

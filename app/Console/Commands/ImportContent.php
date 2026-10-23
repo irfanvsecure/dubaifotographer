@@ -8,6 +8,7 @@ use App\Models\Media;
 use App\Models\Page;
 use App\Models\Redirect;
 use App\Models\Setting;
+use App\Support\Sections\SectionStore;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -73,6 +74,11 @@ class ImportContent extends Command
             $this->importViews();
             $this->importRedirects();
             $this->importMedia();
+            foreach (Page::query()->get() as $page) {
+                if ($count = SectionStore::import($page)) {
+                    $this->counts['page_sections']['created'] = ($this->counts['page_sections']['created'] ?? 0) + $count;
+                }
+            }
         } catch (\Throwable $e) {
             DB::rollBack();
             $this->error($e->getMessage());
@@ -243,10 +249,16 @@ class ImportContent extends Command
     /** Pages whose design is their own Blade template; the H1 is read from the rendered page */
     private function importDesignedPage(string $view, string $slug, array $seo, int $sort): void
     {
-        $html = view($view)->render();
-        $h1 = preg_match_all('#<h1\b[^>]*>(.*?)</h1>#s', $html, $m) ? trim($m[1][0]) : null;
-        if (count($m[1] ?? []) !== 1) {
-            $this->warnings[] = "$view: ".count($m[1] ?? []).' H1 tags';
+        // pages whose body moved to page_sections: the H1 is in their definition file
+        if (is_file($definition = SectionStore::definitionFile($slug))) {
+            $html = '';
+            $h1 = (require $definition)['h1'];
+        } else {
+            $html = view($view)->render();
+            $h1 = preg_match_all('#<h1\b[^>]*>(.*?)</h1>#s', $html, $m) ? trim($m[1][0]) : null;
+            if (count($m[1] ?? []) !== 1) {
+                $this->warnings[] = "$view: ".count($m[1] ?? []).' H1 tags';
+            }
         }
         $this->savePage($slug, [
             'title' => html_entity_decode(strip_tags((string) $h1), ENT_QUOTES | ENT_HTML5) ?: $view,

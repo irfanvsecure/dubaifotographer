@@ -5,7 +5,7 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="%%BASE%%/assets/css/pages/location.css">
+    <link rel="stylesheet" href="%%BASE%%/assets/css/pages/location-page.css">
 @endpush
 
 @php

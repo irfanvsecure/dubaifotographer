@@ -18,6 +18,12 @@ class Page extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
+    /** Body sections of a designed page, in display order (empty for pages still fully in Blade) */
+    public function sections(): HasMany
+    {
+        return $this->hasMany(PageSection::class)->orderBy('position');
+    }
+
     public function children(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id')->orderBy('sort_order');

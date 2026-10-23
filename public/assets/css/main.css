@@ -998,7 +998,7 @@ h1, h2, h3 {
 
 body:has(.cta) .footer-cta,
 body:has(.svc-book) .footer-cta,
-body:has(.loc-form-box) .footer-cta,
+body:has(.lp-cta) .footer-cta,
 body:has(.pf-cta) .footer-cta,
 body:has(.rf-card) .footer-cta {
     display: none;

@@ -19,9 +19,12 @@ class GetSeo extends SiteTool
     {
         $data = $request->validate([
             'type' => 'required|in:page,blog',
-            'id' => 'required_without:slug|nullable|integer',
-            'slug' => 'required_without:id|nullable|string',
+            'id' => 'nullable|integer',
+            'slug' => 'nullable|string',
         ]);
+        if (! isset($data['id']) && ! array_key_exists('slug', $data)) {
+            return Response::error('Give id or slug.');
+        }
         $entity = $this->entity($data);
         if (! $entity) {
             return Response::error(ucfirst($data['type']).' not found.');
@@ -59,7 +62,7 @@ class GetSeo extends SiteTool
         $class = $data['type'] === 'page' ? Page::class : Blog::class;
 
         return $class::query()->with('seo')
-            ->when(isset($data['id']), fn ($q) => $q->whereKey($data['id']), fn ($q) => $q->where('slug', trim((string) $data['slug'], '/')))
+            ->when(isset($data['id']), fn ($q) => $q->whereKey($data['id']), fn ($q) => $q->where('slug', trim((string) ($data['slug'] ?? ''), '/')))
             ->first();
     }
 

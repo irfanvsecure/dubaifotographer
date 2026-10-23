@@ -16,11 +16,14 @@ class GetBlog extends SiteTool
     public function handle(Request $request): Response
     {
         $data = $request->validate([
-            'id' => 'required_without:slug|nullable|integer',
-            'slug' => 'required_without:id|nullable|string',
+            'id' => 'nullable|integer',
+            'slug' => 'nullable|string',
         ]);
+        if (! isset($data['id']) && ! array_key_exists('slug', $data)) {
+            return Response::error('Give id or slug.');
+        }
         $blog = Blog::query()->with(['seo', 'category', 'tags'])
-            ->when(isset($data['id']), fn ($q) => $q->whereKey($data['id']), fn ($q) => $q->where('slug', trim((string) $data['slug'], '/')))
+            ->when(isset($data['id']), fn ($q) => $q->whereKey($data['id']), fn ($q) => $q->where('slug', trim((string) ($data['slug'] ?? ''), '/')))
             ->first();
 
         return $blog ? $this->json($this->blogArray($blog, true)) : Response::error('Blog post not found.');

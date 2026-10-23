@@ -19,7 +19,7 @@ Rules:
 - Deleting (pages, posts, images, redirects) needs the owner's OK first: describe what will be removed, then call with confirm: true. Deleted pages, posts and images go to the trash (list_trash, restore_item).
 - Content is HTML. Links and images on this site are written as %%BASE%%/path/ (e.g. %%BASE%%/contact-us/); the site fills in its own address. Every page has exactly one H1, made by the template: do not put <h1> in content.
 - Images: upload_image first (alt text required; converted to WebP), then use the returned html or URL.
-- 49 designed pages (services, locations, home) keep their body in Blade templates: for those, title, H1, slug, status and SEO are editable here, the body is not.
+- Designed pages (home, services, locations…) have their body in sections: get_page_sections, then update_page_section (version needed), add_page_section, delete_page_section, reorder_page_sections. Every section change keeps a revision (list_section_revisions, restore_section_revision) and FAQ changes update the FAQPage schema. The homepage is converted so far; pages not converted yet return no sections, and only their title, H1, slug, status and SEO are editable.
 - Changing the slug of a published page or post adds a 301 redirect from the old URL automatically.
 - Check work with audit_seo, audit_performance, get_internal_links and check_broken_links. Every change is recorded in activity_log.
 TEXT)]
@@ -40,6 +40,13 @@ class SiteServer extends Server
         Tools\CreateBlog::class,
         Tools\UpdateBlog::class,
         Tools\DeleteBlog::class,
+        Tools\GetPageSections::class,
+        Tools\UpdatePageSection::class,
+        Tools\AddPageSection::class,
+        Tools\DeletePageSection::class,
+        Tools\ReorderPageSections::class,
+        Tools\ListSectionRevisions::class,
+        Tools\RestoreSectionRevision::class,
         Tools\ListCategories::class,
         Tools\CreateCategory::class,
         Tools\UpdateCategory::class,

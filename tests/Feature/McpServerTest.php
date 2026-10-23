@@ -61,7 +61,7 @@ class McpServerTest extends TestCase
     {
         $tools = $this->rpc('tools/list')->assertOk()->json('result.tools');
 
-        $this->assertCount(35, $tools);
+        $this->assertCount(42, $tools);
         $this->assertContains('update_seo', array_column($tools, 'name'));
     }
 
@@ -91,6 +91,28 @@ class McpServerTest extends TestCase
         $this->assertSoftDeleted('blogs', ['id' => $id]);
         $this->assertFalse($this->tool('restore_item', ['type' => 'blog', 'id' => $id])['error']);
         $this->get('/brief-your-event-photographer-uae/')->assertOk();
+    }
+
+    public function test_homepage_sections_are_editable_safe_and_revisioned(): void
+    {
+        $sections = collect($this->tool('get_page_sections', ['slug' => ''])['data']['sections'])->keyBy('key');
+        $this->assertCount(16, $sections);
+
+        $result = $this->tool('update_page_section', [
+            'slug' => '', 'key' => 'faq', 'version' => $sections['faq']['version'],
+            'data' => ['items' => [['question' => 'New question?', 'answer' => '<p>Answer</p><script>alert(1)</script>']]],
+        ]);
+        $this->assertFalse($result['error']);
+        $this->assertSame('<p>Answer</p>', $result['data']['updated']['data']['items'][0]['answer']);
+
+        $html = $this->get('/')->assertOk()->getContent();
+        $this->assertStringContainsString('New question?', $html);
+        $this->assertStringContainsString('"name":"New question?"', $html); // FAQPage schema followed
+        $this->assertStringNotContainsString('alert(1)', $html);
+
+        $revision = $this->tool('list_section_revisions', ['slug' => '', 'key' => 'faq'])['data']['revisions'][0];
+        $this->assertFalse($this->tool('restore_section_revision', ['revision_id' => $revision['revision_id']])['error']);
+        $this->assertStringNotContainsString('New question?', $this->get('/')->getContent());
     }
 
     public function test_slug_change_adds_a_redirect(): void
