@@ -22,3 +22,9 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Images uploaded through MCP live on the server; WebP copies are made there (php artisan images:webp)
+/public/assets/images/uploads/
+*.jpg.webp
+*.jpeg.webp
+*.png.webp

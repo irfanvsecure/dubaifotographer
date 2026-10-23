@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @yield('seo')
+    {{-- SEO tags from seo_meta (SiteController); views without a DB row keep their own section --}}
+    @isset($seoHead)
+        {!! $seoHead !!}
+    @else
+        @yield('seo')
+    @endisset
     @if ($ga = config('services.google_analytics'))
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ $ga }}"></script>
         <script>

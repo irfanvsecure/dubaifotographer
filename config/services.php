@@ -37,4 +37,10 @@ return [
         ],
     ],
 
+
+    // bearer token for /api/mcp; only its hash is stored (php artisan mcp:token)
+    'mcp' => [
+        'token' => env('MCP_TOKEN'),
+    ],
+
 ];

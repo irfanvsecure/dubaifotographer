@@ -18,6 +18,7 @@ class PageOptimizer
     public static function run(string $html, string $base): string
     {
         $html = self::hideEmail($html);
+        $html = self::images($html, $base);
         $html = self::moveBackgroundStyles($html);
         $html = self::shareSvgs($html);
         $html = self::inlineCriticalCss($html, $base);
@@ -60,6 +61,58 @@ class PageOptimizer
         }
 
         return implode('', $parts);
+    }
+
+    /**
+     * Images in <body>: the WebP copy made by `php artisan images:webp` (photo.jpg.webp) replaces
+     * a JPEG/PNG, missing width/height are read from the file (no layout shift), and images
+     * below the first screen load lazily. The header and the first two images in <main> stay
+     * eager: one of them is usually the largest thing on screen.
+     */
+    private static function images(string $html, string $base): string
+    {
+        $bodyAt = strpos($html, '<body');
+        if ($bodyAt === false) {
+            return $html;
+        }
+        $head = substr($html, 0, $bodyAt);
+        $body = substr($html, $bodyAt);
+        $prefix = preg_quote($base.'/assets/', '#');
+
+        // JPEG/PNG → WebP copy (src, srcset, background images)
+        $body = preg_replace_callback('#'.$prefix.'[^"\'()\s,]+\.(?:jpe?g|png)(?=["\'()\s,])#i', function (array $m) use ($base): string {
+            $file = public_path(rawurldecode(substr($m[0], strlen($base) + 1)));
+
+            return is_file($file.'.webp') ? $m[0].'.webp' : $m[0];
+        }, $body);
+
+        $headerEnd = strpos($body, '</header>') ?: 0;
+        $mainAt = strpos($body, '<main');
+        $inMain = 0;
+        $body = preg_replace_callback('#<img\b[^>]*>#i', function (array $m) use ($base, $prefix, $headerEnd, $mainAt, &$inMain): string {
+            [$tag, $at] = $m[0];
+            if ($mainAt !== false && $at > $mainAt) {
+                $inMain++;
+            }
+            if ((! str_contains($tag, ' width=') || ! str_contains($tag, ' height=')) && preg_match('#\ssrc="('.$prefix.'[^"]+)"#', $tag, $src)) {
+                $file = public_path(rawurldecode(substr(preg_replace('#\.webp$#', '', $src[1]), strlen($base) + 1)));
+                $file = is_file($file) ? $file : public_path(rawurldecode(substr($src[1], strlen($base) + 1)));
+                $size = is_file($file) ? @getimagesize($file) : false;
+                if ($size && ! str_contains($tag, ' width=') && ! str_contains($tag, ' height=')) {
+                    $tag = substr($tag, 0, 4).' width="'.$size[0].'" height="'.$size[1].'"'.substr($tag, 4);
+                }
+            }
+            if (! str_contains($tag, ' loading=') && $at > $headerEnd && $inMain > 2) {
+                $tag = substr($tag, 0, 4).' loading="lazy"'.substr($tag, 4);
+            }
+            if (! str_contains($tag, ' decoding=')) {
+                $tag = substr($tag, 0, 4).' decoding="async"'.substr($tag, 4);
+            }
+
+            return $tag;
+        }, $body, -1, $count, PREG_OFFSET_CAPTURE);
+
+        return $head.$body;
     }
 
     /** style="background-image: url(...)" becomes a class with the same rule in <head>. */

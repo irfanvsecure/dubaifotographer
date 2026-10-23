@@ -79,11 +79,11 @@
             'hybrid-event-live-switching-guide',
         ],
     ];
-    $view = (string) request()->route('view', '');
+    $view = $currentTemplate ?? '';
     $slugs = $guidesByService[$view] ?? [];
     $bySlug = [];
     if ($slugs) {
-        foreach (require resource_path('data/blog-posts.php') as $post) {
+        foreach (\App\Support\BlogIndex::posts() as $post) {
             $bySlug[$post[0]] = $post[3];
         }
     }

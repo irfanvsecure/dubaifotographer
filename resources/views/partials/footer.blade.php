@@ -1,4 +1,11 @@
 @php
+    // contact details and social profiles: settings table (MCP: update_settings)
+    $contact = \App\Models\Setting::get('contact', []) + [
+        'phone' => '+971 52 294 6276', 'phone_link' => '+971522946276', 'whatsapp' => '971522946276',
+        'email' => 'info@dubaifotographer.com', 'address' => 'Business Bay - Dubai Design District - Dubai - United Arab Emirates',
+        'maps_url' => 'https://maps.app.goo.gl/W4PeNmG4U9xjLbFs8',
+    ];
+    $social = \App\Models\Setting::get('social_links', []);
     $quickLinks = [
         ['Home', '/'],
         ['About Us', '/about-us'],
@@ -34,8 +41,8 @@
             </div>
             <div class="footer-cta-actions">
                 <a class="btn" href="%%BASE%%/booking-form">Get a Quote @include('partials.icon', ['name' => 'arrow-right'])</a>
-                <a class="btn footer-cta-wa" href="https://wa.me/971522946276" target="_blank" rel="noopener">@include('partials.icon', ['name' => 'whatsapp']) WhatsApp</a>
-                <a class="footer-cta-phone" href="tel:+971522946276">@include('partials.icon', ['name' => 'phone-alt']) +971 52 294 6276</a>
+                <a class="btn footer-cta-wa" href="https://wa.me/{{ $contact['whatsapp'] }}" target="_blank" rel="noopener">@include('partials.icon', ['name' => 'whatsapp']) WhatsApp</a>
+                <a class="footer-cta-phone" href="tel:{{ $contact['phone_link'] }}">@include('partials.icon', ['name' => 'phone-alt']) {{ $contact['phone'] }}</a>
             </div>
         </div>
     </div>
@@ -48,9 +55,9 @@
                 </a>
                 <p>Dubai Fotographer is dedicated to capturing life’s most meaningful moments with creativity and elegance. From weddings to corporate events, we turn your special occasions into timeless visual stories.</p>
                 <div class="footer-social">
-                    <a class="social-facebook" href="https://www.facebook.com/100050331586482/" target="_blank" rel="nofollow noopener" title="Facebook">Facebook</a>
-                    <a class="social-instagram" href="https://www.instagram.com/dubaifotographer_event/" target="_blank" rel="nofollow noopener" title="Instagram">Instagram</a>
-                    <a class="social-youtube" href="https://www.youtube.com/@maniwapzstudio" target="_blank" rel="nofollow noopener" title="YouTube">YouTube</a>
+                    @foreach ($social as $network => $url)
+                        <a class="social-{{ $network }}" href="{{ $url }}" target="_blank" rel="nofollow noopener" title="{{ $network === 'youtube' ? 'YouTube' : ucfirst($network) }}">{{ $network === 'youtube' ? 'YouTube' : ucfirst($network) }}</a>
+                    @endforeach
                 </div>
             </div>
 
@@ -74,25 +81,25 @@
 
             <div class="footer-col">
                 <p class="footer-title">Contact Us</p>
-                <a class="footer-contact" href="mailto:info@dubaifotographer.com">
+                <a class="footer-contact" href="mailto:{{ $contact['email'] }}">
                     <span class="contact-icon">@include('partials.icon', ['name' => 'envelope'])</span>
                     <span>
                         <p class="contact-title">Our Email</p>
-                        <p class="contact-text">info@dubaifotographer.com</p>
+                        <p class="contact-text">{{ $contact['email'] }}</p>
                     </span>
                 </a>
-                <a class="footer-contact" href="tel:+971522946276">
+                <a class="footer-contact" href="tel:{{ $contact['phone_link'] }}">
                     <span class="contact-icon">@include('partials.icon', ['name' => 'phone-alt'])</span>
                     <span>
                         <p class="contact-title">Book Us</p>
-                        <p class="contact-text">+971 52 294 6276 <br>call now</p>
+                        <p class="contact-text">{{ $contact['phone'] }} <br>call now</p>
                     </span>
                 </a>
-                <a class="footer-contact" href="https://maps.app.goo.gl/W4PeNmG4U9xjLbFs8">
+                <a class="footer-contact" href="{{ $contact['maps_url'] }}">
                     <span class="contact-icon">@include('partials.icon', ['name' => 'map-marker-alt'])</span>
                     <span>
                         <p class="contact-title">Location</p>
-                        <p class="contact-text">Business Bay - Dubai Design District - Dubai - United Arab Emirates</p>
+                        <p class="contact-text">{{ $contact['address'] }}</p>
                     </span>
                 </a>
             </div>

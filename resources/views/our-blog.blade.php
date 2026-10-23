@@ -10,7 +10,7 @@
 
 @php
     // [slug, image, alt, title, date, topic]
-    $posts = require resource_path('data/blog-posts.php');
+    $posts = \App\Support\BlogIndex::posts();
 @endphp
 
 @section('content')
