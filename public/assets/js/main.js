@@ -92,6 +92,27 @@
         });
     });
 
+    /* ---------- Map: the Google iframe loads only when asked for ---------- */
+
+    each(".map-embed", function (box) {
+        var button = box.querySelector(".map-embed-load");
+        if (!button) {
+            return;
+        }
+        button.addEventListener("click", function () {
+            var frame = document.createElement("iframe");
+            frame.src = box.getAttribute("data-map-src");
+            frame.title = box.getAttribute("data-map-title");
+            frame.width = "600";
+            frame.height = "450";
+            frame.allowFullscreen = true;
+            frame.referrerPolicy = "no-referrer-when-downgrade";
+            box.innerHTML = "";
+            box.appendChild(frame);
+            box.classList.add("is-loaded");
+        });
+    });
+
     /* ---------- Logo carousels ---------- */
 
     if (window.Swiper) {

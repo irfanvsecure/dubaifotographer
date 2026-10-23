@@ -48,9 +48,9 @@
                 </a>
                 <p>Dubai Fotographer is dedicated to capturing life’s most meaningful moments with creativity and elegance. From weddings to corporate events, we turn your special occasions into timeless visual stories.</p>
                 <div class="footer-social">
-                    <a class="social-facebook" href="https://www.facebook.com/100050331586482/" target="_blank" rel="noopener" title="Facebook">Facebook</a>
-                    <a class="social-instagram" href="https://www.instagram.com/dubaifotographer_event/" target="_blank" rel="noopener" title="Instagram">Instagram</a>
-                    <a class="social-youtube" href="https://www.youtube.com/@maniwapzstudio" target="_blank" rel="noopener" title="YouTube">YouTube</a>
+                    <a class="social-facebook" href="https://www.facebook.com/100050331586482/" target="_blank" rel="nofollow noopener" title="Facebook">Facebook</a>
+                    <a class="social-instagram" href="https://www.instagram.com/dubaifotographer_event/" target="_blank" rel="nofollow noopener" title="Instagram">Instagram</a>
+                    <a class="social-youtube" href="https://www.youtube.com/@maniwapzstudio" target="_blank" rel="nofollow noopener" title="YouTube">YouTube</a>
                 </div>
             </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\PageOptimizer;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -80,8 +81,8 @@ class SiteController extends Controller
             $html
         );
 
-        // Scripts wait until the HTML is parsed. Styles stay blocking so the
-        // first paint is already laid out, instead of flashing unstyled HTML.
+        // Scripts wait until the HTML is parsed. Styles load async; PageOptimizer
+        // inlines the rules the first screen needs, so there is no unstyled flash.
         $html = preg_replace(
             '#<script(?![^>]*\b(?:defer|async)\b)(\s[^>]*\bsrc=)#i',
             '<script defer$1',
@@ -97,6 +98,8 @@ class SiteController extends Controller
                 : 'href="'.$base.$m[1].'/'.($m[2] ?? '').'"',
             $html
         );
+
+        $html = PageOptimizer::run($html, $base);
 
         return response($html, 200, [
             'Content-Type' => 'text/html; charset=UTF-8',

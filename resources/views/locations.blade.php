@@ -42,6 +42,7 @@
             <div class="loc-text loc-intro">
                 <p>Every service we offer is available across the UAE. Each city page explains what we shoot there most, where we like to work and how travel and permits are handled.</p>
                 <p>If you already know the date and venue, send them through the booking form. We reply with crew availability and a clear quote for that location.</p>
+                <p>Shoots outside Dubai are planned the same way as a shoot next to our Business Bay studio. We confirm the venue rules, the arrival time and any permits the location needs, then quote travel together with the crew and equipment, so there are no surprise costs on the day. Hotels, malls, free zones and outdoor landmarks each have their own requirements, and the city pages list the ones we meet most often.</p>
             </div>
             <div class="loc-grid">
                 @foreach ($cities as [$image, $alt, $url, $city, $text])

@@ -124,6 +124,7 @@
                     <div class="bk-box">
                         <p class="bk-box-title">What to include</p>
                         <p class="bk-box-text">Name the date, the venue, and whether you need photography, video, a photo booth or a drone. If it is an event, say how many hours and whether a stage or a second room needs its own camera. For a studio booking, say how many looks or products you want covered. We use that to hold the right crew and to price the job before you confirm.</p>
+                        <p class="bk-box-text">It also helps to mention when you need the files and where they will be used, for example a website, social media, print or a press release, so we can plan the edit and the delivery format from the start.</p>
                     </div>
 
                     <div class="bk-box">

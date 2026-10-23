@@ -448,7 +448,7 @@
             <p class="eyebrow center">- FIND US</p>
             <p class="title center">Visit our Dubai studio</p>
             <div class="text center map-intro">Based in Dubai and just as comfortable on location anywhere across the UAE — drop by the studio or have us come to you.</div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7204.621783303499!2d55.296137087035376!3d25.18825938491749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5be0ca1a8b7b%3A0x68567087d7eaa868!2sDubai%20Fotographer%20-%20Photography%20%26%20Videography%20Services!5e0!3m2!1sen!2s!4v1778829431947!5m2!1sen!2s" width="600" height="450" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Dubai Fotographer on Google Maps"></iframe>
+            @include('partials.map')
         </div>
     </section>
 

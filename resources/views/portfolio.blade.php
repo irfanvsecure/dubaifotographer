@@ -67,6 +67,19 @@
         </div>
     </section>
 
+    {{-- What each filter covers --}}
+    <section class="section pf-notes">
+        <div class="container">
+            <p class="eyebrow">- Behind the work</p>
+            <h2 class="title">What each part of the portfolio shows</h2>
+            <p class="text"><strong>Events.</strong> Conferences, gala dinners, award nights and brand launches across Dubai, Abu Dhabi and the other Emirates. We cover the stage, the speakers, the guests and the details your marketing team will need afterwards, and deliver edited images ready for press releases, social media and internal reports. See <a href="%%BASE%%/corporate-event-photography-videography">corporate event photography</a>.</p>
+            <p class="text"><strong>Photo booths.</strong> Live printing booths give every guest a branded print to take home. They work at weddings, exhibitions and product activations, and we set up, run and pack down the booth for you. See <a href="%%BASE%%/live-printing-photo-booth-for-instant-guest-keepsakes">live printing photo booths</a>.</p>
+            <p class="text"><strong>Studio.</strong> Product, e-commerce, portrait and headshot sessions with controlled lighting, so colours stay true and a whole catalogue looks consistent. You can bring the products to us, or we bring the lights and backdrops to your office. See <a href="%%BASE%%/product-photography-services-in-uae">product photography</a>.</p>
+            <p class="text"><strong>Drone.</strong> Aerial photography and video for real estate, construction progress, resorts and events, flown by licensed pilots who handle the permits for each location. See <a href="%%BASE%%/cinematic-drone-photography-videography-uae-compliant-licensed">drone photography and videography</a>.</p>
+            <p class="text">Every shoot starts with a short brief: the date, the location, what the images are for and where they will be used. That brief decides the crew, the equipment and the delivery format, so you get files that are ready to publish.</p>
+        </div>
+    </section>
+
     {{-- Conversion: straight after the work --}}
     <section class="section section-dark pf-cta">
         <div class="container">
