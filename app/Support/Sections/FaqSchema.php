@@ -3,6 +3,7 @@
 namespace App\Support\Sections;
 
 use App\Models\Page;
+use App\Support\SchemaList;
 
 /**
  * Keeps the page's FAQPage JSON-LD (seo_meta.schema_json) equal to its FAQ sections:
@@ -22,35 +23,12 @@ class FaqSchema
             ])->values()->all();
 
         $seo = $page->seo()->firstOrCreate([]);
-        $schemas = self::withoutFaq($seo->schemas());
+        $blocks = SchemaList::without(SchemaList::blocks($seo->schemas()), 'FAQPage');
         if ($items) {
-            $schemas[] = ['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $items];
+            $blocks[] = ['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $items];
         }
 
-        $seo->update(['schema_json' => $schemas
-            ? json_encode(count($schemas) === 1 ? $schemas[0] : $schemas, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
-            : null]);
-    }
-
-    /** Drops every FAQPage block, also those inside an @graph (an emptied @graph goes too) */
-    private static function withoutFaq(array $schemas): array
-    {
-        $isFaq = fn ($node) => is_array($node) && in_array('FAQPage', (array) ($node['@type'] ?? []), true);
-        $kept = [];
-        foreach ($schemas as $schema) {
-            if ($isFaq($schema)) {
-                continue;
-            }
-            if (isset($schema['@graph']) && is_array($schema['@graph'])) {
-                $schema['@graph'] = array_values(array_filter($schema['@graph'], fn ($node) => ! $isFaq($node)));
-                if (! $schema['@graph']) {
-                    continue;
-                }
-            }
-            $kept[] = $schema;
-        }
-
-        return $kept;
+        $seo->update(['schema_json' => SchemaList::encode($blocks)]);
     }
 
     private static function plain(string $html): string

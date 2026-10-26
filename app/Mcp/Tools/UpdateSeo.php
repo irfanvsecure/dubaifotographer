@@ -2,12 +2,13 @@
 
 namespace App\Mcp\Tools;
 
+use App\Support\SchemaList;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Request;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Attributes\Description;
 
-#[Description('Change the SEO of a page or blog post. Requires the `version` from get_seo. Only the fields you send change; send null to clear a field (it then falls back to the default). Aim for titles of 30-60 characters and descriptions of 70-160. schema_json replaces the whole JSON-LD (one object or a list; generate_schema can build it).')]
+#[Description('Change the SEO of a page or blog post. Requires the `version` from get_seo. Only the fields you send change; send null to clear a field (it then falls back to the default). Aim for titles of 30-60 characters and descriptions of 70-160. A page can have any number of JSON-LD blocks: add_schemas adds blocks next to the existing ones (replacing only the same @type), remove_schema_types removes blocks, schemas replaces the whole list, schema_json replaces it with one object. generate_schema can build blocks. Keep FAQPage in sync with the page FAQ: FAQ section edits rewrite it.')]
 class UpdateSeo extends GetSeo
 {
     public function handle(Request $request): Response
@@ -25,7 +26,16 @@ class UpdateSeo extends GetSeo
             'og_image' => 'sometimes|nullable|string|max:255',
             'focus_keyword' => 'sometimes|nullable|string|max:120',
             'schema_json' => 'sometimes|nullable',
+            'schemas' => 'sometimes|nullable|array',
+            'schemas.*' => 'array',
+            'add_schemas' => 'sometimes|array',
+            'add_schemas.*' => 'array',
+            'remove_schema_types' => 'sometimes|array',
+            'remove_schema_types.*' => 'string',
         ]);
+        if (count(array_intersect_key($data, array_flip(['schema_json', 'schemas']))) > 1) {
+            return Response::error('Send either schema_json or schemas, not both.');
+        }
         $entity = $this->entity($data);
         if (! $entity) {
             return Response::error(ucfirst($data['type']).' not found.');
@@ -33,13 +43,33 @@ class UpdateSeo extends GetSeo
         $seo = $entity->seo()->firstOrCreate([]);
         $this->checkVersion($seo, $request, 'get_seo');
 
-        $changes = collect($data)->except(['type', 'id', 'version'])->all();
+        $changes = collect($data)->except(['type', 'id', 'version', 'schemas', 'add_schemas', 'remove_schema_types'])->all();
+        if (array_key_exists('schemas', $data)) {
+            $changes['schema_json'] = $data['schemas'];
+        }
         if (array_key_exists('schema_json', $changes) && $changes['schema_json'] !== null) {
             $schema = is_string($changes['schema_json']) ? json_decode($changes['schema_json'], true) : $changes['schema_json'];
             if (! is_array($schema)) {
                 return Response::error('schema_json must be a JSON-LD object or a list of objects.');
             }
-            $changes['schema_json'] = $this->placeholders(json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+            $changes['schema_json'] = SchemaList::encode(SchemaList::blocks($schema));
+        }
+        if (isset($data['add_schemas']) || isset($data['remove_schema_types'])) {
+            $current = array_key_exists('schema_json', $changes) ? json_decode((string) $changes['schema_json'], true) ?? [] : $seo->schemas();
+            $blocks = SchemaList::blocks($current);
+            foreach ($data['remove_schema_types'] ?? [] as $type) {
+                $blocks = SchemaList::without($blocks, $type);
+            }
+            $add = SchemaList::blocks(array_values($data['add_schemas'] ?? []));
+            foreach ($add as $block) {
+                if (empty($block['@type'])) {
+                    return Response::error('Every block in add_schemas needs an @type.');
+                }
+            }
+            $changes['schema_json'] = SchemaList::encode(SchemaList::merge($blocks, $add));
+        }
+        if (isset($changes['schema_json'])) {
+            $changes['schema_json'] = $this->placeholders($changes['schema_json']);
         }
         foreach (['canonical_url', 'og_image'] as $url) {
             if (isset($changes[$url])) {
@@ -71,7 +101,10 @@ class UpdateSeo extends GetSeo
             'og_description' => $schema->string(),
             'og_image' => $schema->string()->description('Image URL (1200x630 works best)'),
             'focus_keyword' => $schema->string(),
-            'schema_json' => $schema->object()->description('JSON-LD object (or send a JSON string of a list)'),
+            'schema_json' => $schema->object()->description('Replaces the whole JSON-LD with this one object. For several blocks use schemas or add_schemas.'),
+            'schemas' => $schema->array()->items($schema->object())->description('Replaces the whole JSON-LD with these blocks, e.g. [LocalBusiness, Service, BreadcrumbList, FAQPage]. [] removes all.'),
+            'add_schemas' => $schema->array()->items($schema->object())->description('Adds these blocks and keeps the others; a block replaces only an existing block of the same @type'),
+            'remove_schema_types' => $schema->array()->items($schema->string())->description('Removes the blocks of these @types, e.g. ["Review"]'),
         ];
     }
 }

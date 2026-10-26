@@ -135,6 +135,41 @@ class McpServerTest extends TestCase
         $this->assertStringContainsString('class="svc-mobile-bar"', $html);
     }
 
+    public function test_a_page_can_have_several_schema_blocks(): void
+    {
+        $page = \App\Models\Page::query()->where('slug', 'about-us')->firstOrFail();
+        $page->seo()->firstOrCreate([])->update(['schema_json' => json_encode(['@context' => 'https://schema.org', '@graph' => [
+            ['@type' => 'LocalBusiness', 'name' => 'Dubai Fotographer'],
+        ]])]);
+        $seo = fn () => $this->tool('get_seo', ['type' => 'page', 'id' => $page->id])['data'];
+        $types = fn () => array_column(\App\Support\SchemaList::blocks($page->seo()->first()->schemas()), '@type');
+
+        $result = $this->tool('update_seo', ['type' => 'page', 'id' => $page->id, 'version' => $seo()['version'], 'add_schemas' => [
+            ['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Photography'],
+            ['@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => []],
+            ['@context' => 'https://schema.org', '@type' => 'Organization', 'name' => 'Dubai Fotographer'],
+        ]]);
+        $this->assertFalse($result['error'], $result['text']);
+        $this->assertSame(['LocalBusiness', 'Service', 'BreadcrumbList', 'Organization'], $types());
+        $this->assertSame(4, substr_count($this->get('/about-us')->getContent(), 'application/ld+json'));
+
+        // same @type replaces, others stay; remove by type
+        $this->tool('update_seo', ['type' => 'page', 'id' => $page->id, 'version' => $seo()['version'],
+            'add_schemas' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Video']],
+            'remove_schema_types' => ['Organization']]);
+        $this->assertSame(['LocalBusiness', 'BreadcrumbList', 'Service'], $types());
+
+        // the whole list at once
+        $this->tool('update_seo', ['type' => 'page', 'id' => $page->id, 'version' => $seo()['version'], 'schemas' => [
+            ['@context' => 'https://schema.org', '@type' => 'LocalBusiness'],
+            ['@context' => 'https://schema.org', '@type' => 'Service'],
+        ]]);
+        $this->assertSame(['LocalBusiness', 'Service'], $types());
+
+        $this->tool('generate_schema', ['type' => 'page', 'id' => $page->id, 'schema_type' => 'BreadcrumbList', 'save' => true]);
+        $this->assertSame(['LocalBusiness', 'Service', 'BreadcrumbList'], $types());
+    }
+
     public function test_faq_edit_replaces_a_faq_inside_an_at_graph_schema(): void
     {
         $slug = 'wedding-photography-in-uae';

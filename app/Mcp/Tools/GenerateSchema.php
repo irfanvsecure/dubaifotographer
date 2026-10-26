@@ -5,13 +5,14 @@ namespace App\Mcp\Tools;
 use App\Models\Blog;
 use App\Models\Page;
 use App\Models\Setting;
+use App\Support\SchemaList;
 use App\Support\SiteRenderer;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Request;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Attributes\Description;
 
-#[Description('Build JSON-LD for a page or post: Article, Service, FAQPage (questions read from the page FAQ, or pass faqs), LocalBusiness or BreadcrumbList. Returns the JSON for review. With save: true it is added to the page SEO, replacing an existing block of the same @type (show it to the site owner first).')]
+#[Description('Build JSON-LD for a page or post: Article, Service, FAQPage (questions read from the page FAQ, or pass faqs), LocalBusiness or BreadcrumbList. Returns the JSON for review. With save: true it is added to the page SEO next to the other blocks, replacing only an existing block of the same @type (show it to the site owner first). Call it once per type to build up several blocks.')]
 class GenerateSchema extends SiteTool
 {
     public function handle(Request $request): Response
@@ -45,9 +46,8 @@ class GenerateSchema extends SiteTool
         if ($data['save'] ?? false) {
             $seo = $entity->seo()->firstOrCreate([]);
             $old = $seo->schemas();
-            $kept = array_values(array_filter($old, fn ($s) => ($s['@type'] ?? null) !== $schema['@type']));
-            $all = [...$kept, $schema];
-            $seo->update(['schema_json' => json_encode(count($all) === 1 ? $all[0] : $all, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)]);
+            $all = SchemaList::merge(SchemaList::blocks($old), [$schema]);
+            $seo->update(['schema_json' => SchemaList::encode($all)]);
             $this->log('seo', $seo->id, ['schema_json' => $old, 'for' => "{$data['type']}#{$entity->id}"], ['schema_json' => $all]);
         }
 
