@@ -56,7 +56,7 @@
                 <p>Dubai Fotographer is dedicated to capturing life’s most meaningful moments with creativity and elegance. From weddings to corporate events, we turn your special occasions into timeless visual stories.</p>
                 <div class="footer-social">
                     @foreach ($social as $network => $url)
-                        <a class="social-{{ $network }}" href="{{ $url }}" target="_blank" rel="nofollow noopener" title="{{ $network === 'youtube' ? 'YouTube' : ucfirst($network) }}">{{ $network === 'youtube' ? 'YouTube' : ucfirst($network) }}</a>
+                        <a class="social-{{ $network }}" href="{{ $url }}" target="_blank" rel="noopener" title="{{ $network === 'youtube' ? 'YouTube' : ucfirst($network) }}">{{ $network === 'youtube' ? 'YouTube' : ucfirst($network) }}</a>
                     @endforeach
                 </div>
             </div>
