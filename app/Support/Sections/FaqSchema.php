@@ -22,7 +22,7 @@ class FaqSchema
             ])->values()->all();
 
         $seo = $page->seo()->firstOrCreate([]);
-        $schemas = array_values(array_filter($seo->schemas(), fn ($schema) => ($schema['@type'] ?? null) !== 'FAQPage'));
+        $schemas = self::withoutFaq($seo->schemas());
         if ($items) {
             $schemas[] = ['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $items];
         }
@@ -30,6 +30,27 @@ class FaqSchema
         $seo->update(['schema_json' => $schemas
             ? json_encode(count($schemas) === 1 ? $schemas[0] : $schemas, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
             : null]);
+    }
+
+    /** Drops every FAQPage block, also those inside an @graph (an emptied @graph goes too) */
+    private static function withoutFaq(array $schemas): array
+    {
+        $isFaq = fn ($node) => is_array($node) && in_array('FAQPage', (array) ($node['@type'] ?? []), true);
+        $kept = [];
+        foreach ($schemas as $schema) {
+            if ($isFaq($schema)) {
+                continue;
+            }
+            if (isset($schema['@graph']) && is_array($schema['@graph'])) {
+                $schema['@graph'] = array_values(array_filter($schema['@graph'], fn ($node) => ! $isFaq($node)));
+                if (! $schema['@graph']) {
+                    continue;
+                }
+            }
+            $kept[] = $schema;
+        }
+
+        return $kept;
     }
 
     private static function plain(string $html): string

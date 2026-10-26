@@ -135,6 +135,27 @@ class McpServerTest extends TestCase
         $this->assertStringContainsString('class="svc-mobile-bar"', $html);
     }
 
+    public function test_faq_edit_replaces_a_faq_inside_an_at_graph_schema(): void
+    {
+        $slug = 'wedding-photography-in-uae';
+        $page = \App\Models\Page::query()->where('slug', $slug)->firstOrFail();
+        $page->seo()->firstOrCreate([])->update(['schema_json' => json_encode(['@context' => 'https://schema.org', '@graph' => [
+            ['@type' => 'LocalBusiness', 'name' => 'Dubai Fotographer'],
+            ['@type' => 'FAQPage', 'mainEntity' => [['@type' => 'Question', 'name' => 'Old question?']]],
+        ]])]);
+
+        $sections = collect($this->tool('get_page_sections', ['slug' => $slug])['data']['sections'])->keyBy('key');
+        $this->tool('update_page_section', [
+            'slug' => $slug, 'key' => 'faq', 'version' => $sections['faq']['version'],
+            'data' => ['items' => [['question' => 'New question?', 'answer' => '<p>Yes.</p>']]],
+        ]);
+
+        $html = $this->get("/$slug")->getContent();
+        $this->assertSame(1, substr_count($html, '"FAQPage"'));
+        $this->assertStringNotContainsString('Old question?', $html);
+        $this->assertStringContainsString('"LocalBusiness"', $html);
+    }
+
     public function test_slug_change_adds_a_redirect(): void
     {
         $page = $this->tool('get_page', ['slug' => 'portfolio'])['data'];
