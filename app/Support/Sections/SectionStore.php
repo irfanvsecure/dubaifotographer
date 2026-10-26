@@ -150,7 +150,7 @@ class SectionStore
     /** After every change: FAQ schema in sync, page CSS cache dropped (pages themselves are not cached). */
     private static function changed(Page $page, ?string $type): void
     {
-        if ($type === 'faq' || $type === null) {
+        if ($type === null || in_array($type, SectionTypes::FAQ_TYPES, true)) {
             FaqSchema::sync($page);
         }
         File::delete(File::glob(storage_path('framework/cache/critical-*.css')));

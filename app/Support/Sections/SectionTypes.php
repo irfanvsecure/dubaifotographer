@@ -151,8 +151,211 @@ class SectionTypes
                 'label' => 'Closing call to action on black with booking and phone buttons',
                 'fields' => ['eyebrow' => 'text?', 'heading' => 'text', 'text' => 'text'],
             ],
+
+            // About Us
+            'about_hero' => [
+                'label' => 'About page hero on a photo: eyebrow, the page H1 (edit it with update_page h1), text, booking + phone buttons and trust points',
+                'fields' => [
+                    'image' => 'image',
+                    'eyebrow' => 'text?',
+                    'text' => 'text',
+                    'button' => $button,
+                    'trust' => ['list', ['object', ['icon' => 'icon', 'text' => 'text']], 0, 6],
+                ],
+            ],
+            'about_story' => [
+                'label' => 'Story text beside a video, with booking + phone buttons and a badge on the video',
+                'fields' => [
+                    'eyebrow' => 'text?',
+                    'heading' => 'text',
+                    'paragraphs' => ['list', 'html', 1, 10],
+                    'button' => $button,
+                    'video' => 'image',
+                    'badge_number' => 'text?',
+                    'badge_text' => 'text?',
+                ],
+            ],
+            'reasons' => [
+                'label' => 'Cards with an icon, title and short text (e.g. why choose us)',
+                'fields' => [
+                    'eyebrow' => 'text?',
+                    'heading' => 'text',
+                    'items' => ['list', ['object', ['icon' => 'icon', 'title' => 'text', 'text' => 'text']], 1, 8],
+                ],
+            ],
+            'logo_grid' => [
+                'label' => 'Grid of client logos (not scrolling)',
+                'fields' => [
+                    'eyebrow' => 'text?',
+                    'heading' => 'text',
+                    'items' => ['list', ['object', ['image' => 'image', 'alt' => 'text']], 1, 40],
+                ],
+            ],
+
+            // Services overview
+            'page_banner' => [
+                'label' => 'Short banner on a darkened photo showing the page H1 (edit it with update_page h1)',
+                'fields' => ['image' => 'image'],
+            ],
+            'trust_strip' => [
+                'label' => 'Thin strip of trust points with icons',
+                'fields' => ['items' => ['list', ['object', ['icon' => 'icon', 'text' => 'text']], 1, 6]],
+            ],
+            'services_intro' => [
+                'label' => 'Intro text beside a "plan your shoot" card with facts, booking/phone buttons and a WhatsApp link',
+                'fields' => [
+                    'eyebrow' => 'text?',
+                    'heading' => 'text',
+                    'body' => 'html',
+                    'card_label' => 'text',
+                    'facts' => ['list', ['object', ['number' => 'text', 'text' => 'text']], 1, 6],
+                    'whatsapp_text' => 'text',
+                ],
+            ],
+            'services_grid' => [
+                'label' => 'Dark band with every service grouped in cards (image, title, links), then a booking line',
+                'fields' => [
+                    'eyebrow' => 'text?',
+                    'heading' => 'text',
+                    'text' => 'text?',
+                    'cards' => ['list', ['object', [
+                        'title' => 'text',
+                        'image' => 'image',
+                        'alt' => 'text',
+                        'links' => ['list', ['object', ['text' => 'text', 'link' => 'link']], 1, 12],
+                    ]], 1, 12],
+                    'book_text' => 'text',
+                ],
+            ],
+            'session_booking' => [
+                'label' => 'Booking request: text and check points beside the gold "Book Your Studio Session" form',
+                'fields' => [
+                    'eyebrow' => 'text?',
+                    'heading' => 'text',
+                    'text' => 'text',
+                    'checks' => ['list', 'text', 0, 6],
+                    'form_text' => 'text',
+                ],
+            ],
+
+            // Service pages (service.css / service.js). Their WhatsApp buttons all use the svc_hero whatsapp link.
+            'svc_hero' => [
+                'label' => 'Service page hero: the page H1 (edit it with update_page h1), intro, quote/WhatsApp buttons and the 3-step quote form. whatsapp is the link every WhatsApp button on the page uses.',
+                'fields' => [
+                    'image' => 'image',
+                    'exif' => 'text?',
+                    'text' => 'html',
+                    'whatsapp' => 'link',
+                    'form_title' => 'text',
+                    'form_text' => 'text',
+                    'form_note' => 'text',
+                    'questions' => ['list', ['object', [
+                        'label' => 'text',
+                        'name' => 'text',
+                        'options' => ['list', 'text', 2, 8],
+                    ]], 1, 3],
+                    'date_label' => 'text?',
+                    'venue_label' => 'text?',
+                    'venue_placeholder' => 'text',
+                    'guests_label' => 'text',
+                    'guests_options' => ['list', 'text', 2, 8],
+                    'email_label' => 'text?',
+                ],
+            ],
+            'svc_facts' => [
+                'label' => 'Row of quick facts under the hero',
+                'fields' => ['items' => ['list', ['object', ['title' => 'text', 'text' => 'text']], 1, 6]],
+            ],
+            'svc_coverage' => [
+                'label' => 'Emirates served: text beside a card per location page',
+                'fields' => ['badge' => 'text', 'heading' => 'text', 'text' => 'text', 'extra' => 'html?'],
+            ],
+            'svc_marquee' => [
+                'label' => 'Scrolling strip of keywords',
+                'fields' => ['items' => ['list', 'text', 2, 20]],
+            ],
+            'svc_about' => [
+                'label' => 'Photo beside paragraphs with quote and WhatsApp buttons. founder_caption: true shows "Abdul Rehman, runs the team since 2014" on the photo.',
+                'fields' => [
+                    'image' => 'image',
+                    'founder_caption' => 'bool?',
+                    'heading' => 'text',
+                    'paragraphs' => ['list', 'html', 1, 10],
+                ],
+            ],
+            'svc_tabs' => [
+                'label' => 'Tabs, each with an icon, label, image, heading, text and a quote button',
+                'fields' => [
+                    'heading' => 'text',
+                    'tabs' => ['list', ['object', [
+                        'icon' => 'icon',
+                        'label' => 'text',
+                        'image' => 'image',
+                        'alt' => 'text',
+                        'heading' => 'text',
+                        'body' => 'html',
+                        'button' => 'text',
+                    ]], 1, 8],
+                ],
+            ],
+            'svc_band' => [
+                'label' => 'Gold band with one line of text and quote/WhatsApp buttons',
+                'fields' => ['text' => 'text'],
+            ],
+            'svc_gallery' => [
+                'label' => 'Photo gallery with filter buttons; each image has a filter number (0 = first filter) and optionally a larger file (full) opened on click',
+                'fields' => [
+                    'title' => 'text',
+                    'text' => 'text?',
+                    'filters' => ['list', 'text', 1, 6],
+                    'images' => ['list', ['object', ['image' => 'image', 'full' => 'image?', 'alt' => 'text', 'filter' => 'int']], 1, 24],
+                ],
+            ],
+            'svc_feature' => [
+                'label' => 'Dark band: heading, text and a quote button beside labelled photos',
+                'fields' => [
+                    'heading' => 'text',
+                    'body' => 'html',
+                    'button' => 'text',
+                    'photos' => ['list', ['object', ['image' => 'image', 'label' => 'text']], 1, 4],
+                ],
+            ],
+            'svc_areas' => [
+                'label' => 'Text beside a two-column table (e.g. area / where we work)',
+                'fields' => [
+                    'heading' => 'text',
+                    'text' => 'text',
+                    'columns' => ['list', 'text', 2, 2],
+                    'rows' => ['list', ['list', 'text', 2, 2], 1, 10],
+                ],
+            ],
+            'svc_steps' => [
+                'label' => 'Numbered steps, a line of text under them and a quote button',
+                'fields' => [
+                    'heading' => 'text',
+                    'steps' => ['list', 'html', 2, 8],
+                    'note' => 'html?',
+                    'button' => 'text',
+                ],
+            ],
+            'svc_faq' => [
+                'label' => 'FAQ accordion beside a WhatsApp box. Its questions also feed the page FAQPage schema.',
+                'fields' => [
+                    'heading' => 'text',
+                    'items' => ['list', ['object', ['question' => 'text', 'answer' => 'html']], 1, 20],
+                    'box_title' => 'text',
+                    'box_text' => 'text',
+                ],
+            ],
+            'svc_book' => [
+                'label' => 'Closing booking card with quote/WhatsApp buttons',
+                'fields' => ['heading' => 'text', 'text' => 'text'],
+            ],
         ];
     }
+
+    /** Section types whose items feed the FAQPage schema */
+    public const FAQ_TYPES = ['faq', 'svc_faq'];
 
     /** For get_page_sections: the types with their fields, readable */
     public static function describe(): array

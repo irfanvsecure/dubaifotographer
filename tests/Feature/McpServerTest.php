@@ -115,6 +115,26 @@ class McpServerTest extends TestCase
         $this->assertStringNotContainsString('New question?', $this->get('/')->getContent());
     }
 
+    public function test_service_and_about_pages_are_in_sections(): void
+    {
+        $about = collect($this->tool('get_page_sections', ['slug' => 'about-us'])['data']['sections'])->keyBy('key');
+        $this->assertSame('about_story', $about['story']['type']);
+
+        $slug = 'wedding-photography-in-uae';
+        $sections = collect($this->tool('get_page_sections', ['slug' => $slug])['data']['sections'])->keyBy('key');
+        $this->assertCount(13, $sections);
+        $result = $this->tool('update_page_section', [
+            'slug' => $slug, 'key' => 'faq', 'version' => $sections['faq']['version'],
+            'data' => ['items' => [['question' => 'Do you travel to Fujairah?', 'answer' => '<p>Yes.</p>']]],
+        ]);
+        $this->assertFalse($result['error']);
+
+        $html = $this->get("/$slug")->assertOk()->getContent();
+        $this->assertStringContainsString('<h3>Do you travel to Fujairah?</h3>', $html);
+        $this->assertStringContainsString('"name":"Do you travel to Fujairah?"', $html); // svc_faq feeds FAQPage too
+        $this->assertStringContainsString('class="svc-mobile-bar"', $html);
+    }
+
     public function test_slug_change_adds_a_redirect(): void
     {
         $page = $this->tool('get_page', ['slug' => 'portfolio'])['data'];

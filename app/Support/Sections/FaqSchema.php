@@ -13,7 +13,7 @@ class FaqSchema
 {
     public static function sync(Page $page): void
     {
-        $items = $page->sections()->where('type', 'faq')->get()
+        $items = $page->sections()->whereIn('type', SectionTypes::FAQ_TYPES)->get()
             ->flatMap(fn ($section) => $section->data['items'] ?? [])
             ->map(fn ($item) => [
                 '@type' => 'Question',

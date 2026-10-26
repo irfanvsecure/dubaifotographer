@@ -90,7 +90,7 @@ Every change is written to `activity_log` with its old and new values.
 | `delete_blog` | To the trash; needs `confirm: true` |
 | `list_categories` / `create_category` / `update_category` | Blog categories (and tags in use) |
 
-**Page sections** (body of designed pages; the homepage is converted so far)
+**Page sections** (body of designed pages: the homepage, About Us, Services and the 33 service pages; location pages and the rest are still Blade)
 
 | Tool | What it does |
 |---|---|
@@ -101,7 +101,7 @@ Every change is written to `activity_log` with its old and new values.
 | `reorder_page_sections` | New order of all sections (needs `confirm: true`) |
 | `list_section_revisions` / `restore_section_revision` | History of every section change; put any earlier version back |
 
-Every section change keeps the previous content as a revision. HTML fields allow only `p, a, strong, em, ul, li, br, h2, h3`; scripts, iframes, styles and event attributes are stripped. Changing a FAQ section rewrites the page's FAQPage schema.
+Every section change keeps the previous content as a revision. HTML fields allow only `p, a, strong, em, ul, li, br, h2, h3` (a `p` may keep the class `svc-feature-label`); scripts, iframes, styles and event attributes are stripped. Changing a FAQ section (`faq` or `svc_faq`) rewrites the page's FAQPage schema.
 
 The section types and their fields are defined in `app/Support/Sections/SectionTypes.php`. Each type is drawn by `resources/views/sections/<type>.blade.php`. To convert another page, write `database/content/sections/<slug>.php` (see `home.php`), make its template `@include('partials.page-sections')`, then run `php artisan content:sections <slug>`.
 

@@ -1,2 +1,2 @@
 {{-- stats: dark strip of numbers --}}
-<x-stats :items="array_map(fn ($item) => [$item['label'], is_numeric($item['number']) ? (int) $item['number'] : $item['number'], $item['suffix'] ?? ''], $s['items'])" />
+<x-stats :class="$s['_class'] ?? ''" :items="array_map(fn ($item) => [$item['label'], is_numeric($item['number']) ? (int) $item['number'] : $item['number'], $item['suffix'] ?? ''], $s['items'])" />

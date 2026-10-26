@@ -10,11 +10,14 @@ use DOMNode;
  * HTML allowed in section fields: p, a, strong, em, ul, li, br, h2, h3 (b/i are turned into
  * strong/em). script, style, iframe and similar are removed with their content; any other
  * tag is removed but its text kept. Links keep only href (http, https, mailto, tel, #, /,
- * %%BASE%%), target and rel; every other attribute is dropped.
+ * %%BASE%%), target and rel; a p keeps a class from CLASSES; every other attribute is dropped.
  */
 class HtmlSanitizer
 {
     private const ALLOWED = ['p', 'a', 'strong', 'em', 'ul', 'li', 'br', 'h2', 'h3'];
+
+    /** design classes a p may carry (service.css) */
+    public const CLASSES = ['svc-feature-label'];
 
     private const RENAME = ['b' => 'strong', 'i' => 'em'];
 
@@ -85,7 +88,7 @@ class HtmlSanitizer
                     ($name === 'href' && self::safeHref($attribute->value))
                     || ($name === 'target' && in_array($attribute->value, ['_blank', '_self'], true))
                     || $name === 'rel'
-                );
+                ) || ($tag === 'p' && $name === 'class' && in_array($attribute->value, self::CLASSES, true));
                 if (! $keep) {
                     $child->removeAttribute($attribute->name);
                 }
