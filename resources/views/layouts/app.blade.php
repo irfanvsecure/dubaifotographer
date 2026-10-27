@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="FVp7IG3WVyp937E2xUhE4xWLwfFJ86MSk-gDn-MEJq0" />
+    <meta name="google-site-verification" content="L_B6NwsvVC4mK9MVqO3nnPI9DZO1odgfTiUD71xIqxI" />
     {{-- SEO tags from seo_meta (SiteController); views without a DB row keep their own section --}}
     @isset($seoHead)
         {!! $seoHead !!}

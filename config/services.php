@@ -28,7 +28,7 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'google_analytics' => env('GA_MEASUREMENT_ID'),
+    'google_analytics' => env('GA_MEASUREMENT_ID', 'G-5GP3V1DHG8'),
 
     'slack' => [
         'notifications' => [
