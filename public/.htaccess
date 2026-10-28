@@ -1,5 +1,14 @@
 <IfModule mod_headers.c>
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+
+    # Browser cache. CSS/JS links carry ?v=<file time> (SiteRenderer) and fonts never change,
+    # so they keep for a year; images are not versioned, so a month.
+    <FilesMatch "\.(css|js|woff2?)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(webp|avif|jpe?g|png|gif|svg|ico)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
 </IfModule>
 
 <IfModule mod_rewrite.c>

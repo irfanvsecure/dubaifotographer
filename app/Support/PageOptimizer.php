@@ -241,14 +241,18 @@ class PageOptimizer
         return $html;
     }
 
-    /** Class names and ids in the header, the start of <main> and the fixed elements after the footer. */
+    /**
+     * Class names and ids in the header, the first two sections of <main> (on a desktop screen
+     * the second one starts above the fold) and the fixed elements after the footer.
+     */
     private static function firstScreenTokens(string $html): array
     {
         // the mega menu panels are closed at first paint; only the panel itself needs its rules
         $fragment = preg_match('#<header\b.*?</header>#s', $html, $m) ? self::emptyElements($m[0], 'mega-menu') : '';
         if (($start = strpos($html, '<main')) !== false) {
-            $main = substr($html, $start, 12000);
+            $main = substr($html, $start, 30000);
             $end = strpos($main, '</section>');
+            $end = $end === false ? false : strpos($main, '</section>', $end + 10);
             $fragment .= $end === false ? $main : substr($main, 0, $end);
         }
         if (($footerEnd = strpos($html, '</footer>')) !== false) {

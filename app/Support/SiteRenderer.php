@@ -50,20 +50,19 @@ class SiteRenderer
             $html
         );
 
-        // Prefer minified CSS/JS when a sibling .min file exists.
+        // Prefer minified CSS/JS when a sibling .min file exists. ?v=<file time> lets browsers
+        // cache them for a year (public/.htaccess) and still fetch a file again once it changes.
         $html = preg_replace_callback(
             '#(href|src)="([^"]+/assets/[^"]+\.(css|js))"#i',
             function (array $m): string {
-                if (str_contains($m[2], '.min.')) {
-                    return $m[0];
-                }
-                $minUrl = preg_replace('#\.(css|js)$#i', '.min.$1', $m[2]);
-                $path = parse_url($minUrl, PHP_URL_PATH) ?: '';
-                if ($path !== '' && is_file(public_path(ltrim($path, '/')))) {
-                    return $m[1].'="'.$minUrl.'"';
+                $url = $m[2];
+                $file = fn ($url) => public_path(ltrim(parse_url($url, PHP_URL_PATH) ?: '', '/'));
+                $minUrl = preg_replace('#(?<!\.min)\.(css|js)$#i', '.min.$1', $url);
+                if ($minUrl !== $url && is_file($file($minUrl))) {
+                    $url = $minUrl;
                 }
 
-                return $m[0];
+                return is_file($file($url)) ? $m[1].'="'.$url.'?v='.filemtime($file($url)).'"' : $m[0];
             },
             $html
         );
