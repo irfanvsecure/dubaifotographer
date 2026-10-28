@@ -115,21 +115,30 @@ class PageOptimizer
         return $head.$body;
     }
 
-    /** style="background-image: url(...)" becomes a class with the same rule in <head>. */
+    /**
+     * style="background-image: url(...)" becomes a class with the same rule in <head>.
+     * Below the first section of <main> the element also gets "lazy-bg", which hides the
+     * image until main.js sees the element coming into view (the hero keeps loading at once).
+     */
     private static function moveBackgroundStyles(string $html): string
     {
+        $mainAt = strpos($html, '<main');
+        $firstSectionEnd = $mainAt === false ? false : strpos($html, '</section>', $mainAt);
         $classes = [];
         $html = preg_replace_callback(
             '#(<[a-z][a-z0-9]*\b[^>]*?)\sstyle="background-image:\s*url\(\'?([^\')]+)\'?\);?"([^>]*>)#i',
-            function (array $m) use (&$classes): string {
-                $class = $classes[$m[2]] ??= 'bg-'.(count($classes) + 1);
-                $tag = $m[1].$m[3];
+            function (array $m) use (&$classes, $firstSectionEnd): string {
+                $class = $classes[$m[2][0]] ??= 'bg-'.(count($classes) + 1);
+                if ($firstSectionEnd !== false && $m[0][1] > $firstSectionEnd) {
+                    $class .= ' lazy-bg';
+                }
+                $tag = $m[1][0].$m[3][0];
 
                 return preg_match('#\sclass="#', $tag)
                     ? preg_replace('#\sclass="([^"]*)"#', ' class="$1 '.$class.'"', $tag, 1)
                     : preg_replace('#^<([a-z0-9]+)#i', '<$1 class="'.$class.'"', $tag);
             },
-            $html
+            $html, -1, $count, PREG_OFFSET_CAPTURE
         );
         if (! $classes) {
             return $html;
@@ -140,6 +149,7 @@ class PageOptimizer
         foreach ($classes as $url => $class) {
             $css .= '.'.$class."{background-image:url('".$url."')!important}";
         }
+        $css .= '.lazy-bg{background-image:none!important}';
 
         return str_replace('</head>', '<style>'.$css.'</style>'."\n".'</head>', $html);
     }

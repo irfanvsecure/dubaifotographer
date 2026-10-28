@@ -12,12 +12,21 @@
         @yield('seo')
     @endisset
     @if ($ga = config('services.google_analytics'))
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ $ga }}"></script>
+        {{-- gtag.js loads after the page has loaded, so it does not hold up the first screen;
+             the page view queued in dataLayer is sent then --}}
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', @json($ga));
+            window.addEventListener('load', function () {
+                setTimeout(function () {
+                    var s = document.createElement('script');
+                    s.async = true;
+                    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + @json($ga);
+                    document.head.appendChild(s);
+                }, 1500);
+            });
         </script>
     @endif
     <link rel="icon" href="%%BASE%%/assets/images/2026/04/dubai-fav-150x150.png" sizes="32x32">
@@ -25,7 +34,6 @@
     <link rel="apple-touch-icon" href="%%BASE%%/assets/images/2026/04/dubai-fav-300x300.png">
     <link rel="stylesheet" href="%%BASE%%/assets/css/fonts.css">
     <link rel="stylesheet" href="%%BASE%%/assets/css/main.css">
-    <link rel="stylesheet" href="%%BASE%%/assets/css/whatsapp.css">
     @stack('styles')
 </head>
 <body>

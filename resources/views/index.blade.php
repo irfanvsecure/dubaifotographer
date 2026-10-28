@@ -14,7 +14,6 @@
 @endpush
 
 @push('scripts')
-    <script src="%%BASE%%/assets/vendor/swiper/swiper.min.js"></script>
     <script src="%%BASE%%/assets/js/service.js"></script>
 @endpush
 

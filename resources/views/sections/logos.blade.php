@@ -1,5 +1,5 @@
-{{-- logos: client logo carousels; row 2 scrolls the other way --}}
-<section class="section clients">
+{{-- logos: client logo carousels; row 2 scrolls the other way. main.js loads Swiper from data-swiper-src when they come near the screen --}}
+<section class="section clients" data-swiper-src="%%BASE%%/assets/vendor/swiper/swiper.min.js">
     <div class="container">
         <p class="title center">{{ $s['heading'] }}</p>
         @foreach (collect($s['items'])->groupBy(fn ($logo) => (int) ($logo['row'] ?? 1))->sortKeys()->values() as $row => $logos)

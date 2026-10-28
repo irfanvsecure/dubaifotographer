@@ -11,7 +11,8 @@
         Array.prototype.forEach.call((root || document).querySelectorAll(selector), callback);
     }
 
-    function onVisible(elements, callback) {
+    // margin: start that far before the element scrolls into view (e.g. "300px")
+    function onVisible(elements, callback, margin) {
         if (!("IntersectionObserver" in window)) {
             elements.forEach(callback);
             return;
@@ -23,7 +24,7 @@
                     callback(entry.target);
                 }
             });
-        });
+        }, { rootMargin: margin || "0px" });
         elements.forEach(function (el) {
             observer.observe(el);
         });
@@ -113,20 +114,38 @@
         });
     });
 
+    /* ---------- Background images below the hero (PageOptimizer: lazy-bg) ---------- */
+
+    onVisible(Array.prototype.slice.call(document.querySelectorAll(".lazy-bg")), function (el) {
+        el.classList.remove("lazy-bg");
+    }, "400px");
+
     /* ---------- Logo carousels ---------- */
 
-    if (window.Swiper) {
-        each(".logo-carousel", function (carousel) {
-            new window.Swiper(carousel, {
-                slidesPerView: 2,
-                spaceBetween: 10,
-                loop: true,
-                speed: 500,
-                autoplay: { delay: 5000, disableOnInteraction: true, pauseOnMouseEnter: true },
-                breakpoints: { 768: { slidesPerView: 5 } }
-            });
-        });
-    }
+    // Swiper (data-swiper-src on the section) loads when the logos come near the screen;
+    // until then home.css lays the slides out the way Swiper will
+    onVisible(Array.prototype.slice.call(document.querySelectorAll("[data-swiper-src]")), function (section) {
+        function start() {
+            each(".logo-carousel", function (carousel) {
+                new window.Swiper(carousel, {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                    loop: true,
+                    speed: 500,
+                    autoplay: { delay: 5000, disableOnInteraction: true, pauseOnMouseEnter: true },
+                    breakpoints: { 768: { slidesPerView: 5 } }
+                });
+            }, section);
+        }
+        if (window.Swiper) {
+            start();
+            return;
+        }
+        var script = document.createElement("script");
+        script.src = section.getAttribute("data-swiper-src");
+        script.onload = start;
+        document.body.appendChild(script);
+    }, "300px");
 
     /* ---------- Counters ---------- */
 
