@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingRequestController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SiteController;
 use App\Support\Sitemap;
 use Illuminate\Http\Request;
@@ -11,6 +12,9 @@ $moved = fn (string $to) => fn (Request $request) => redirect()->away(rtrim($req
 
 // Booking / quote / contact forms → email info@ + log
 Route::post('/booking-request', BookingRequestController::class)->name('booking-request');
+
+// Blog comments: saved as pending, shown once approved (MCP: moderate_comment)
+Route::post('/comments', CommentController::class)->middleware('throttle:5,1')->name('comments.store');
 
 Route::get('/author/{path}', $moved('/our-blog/'))->where('path', '.*');
 Route::get('/category/{path}', $moved('/our-blog/'))->where('path', '.*');

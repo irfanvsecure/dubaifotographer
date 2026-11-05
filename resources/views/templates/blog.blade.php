@@ -19,7 +19,7 @@
     :date="array_key_exists('date', $l) ? $l['date'] : $blog->published_at?->format('F j, Y')"
     :prev="$l['prev'] ?? null"
     :next="$l['next'] ?? null"
-    :comments="$l['comments'] ?? null"
+    :comments="empty($l['comments']) ? null : $blog"
     :cta="$l['cta'] ?? null"
     :class="$l['class'] ?? null">
 @if (! empty($l['media']))

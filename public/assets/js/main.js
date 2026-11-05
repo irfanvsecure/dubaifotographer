@@ -329,7 +329,7 @@
             if (button) {
                 button.disabled = true;
             }
-            fetch(base + "/booking-request/", {
+            fetch(form.getAttribute("data-url") || base + "/booking-request/", {
                 method: "POST",
                 body: new FormData(form),
                 headers: { "X-Requested-With": "XMLHttpRequest", Accept: "application/json" },
@@ -337,6 +337,14 @@
             }).then(function (response) {
                 if (!response.ok) {
                     throw new Error("Request failed");
+                }
+                var success = form.getAttribute("data-success");
+                if (success) {
+                    var note = document.createElement("p");
+                    note.className = "comment-sent";
+                    note.textContent = success;
+                    form.replaceWith(note);
+                    return;
                 }
                 window.location.href = base + "/thank-you/";
             }).catch(function () {

@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\BookingRequestMail;
 use App\Support\Captcha;
+use App\Support\OwnerMail;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use Throwable;
 
 class BookingRequestController extends Controller
 {
@@ -56,41 +53,11 @@ class BookingRequestController extends Controller
 
         Storage::append('booking-requests.log', json_encode($payload, JSON_UNESCAPED_UNICODE));
 
-        $to = config('mail.enquiry_to') ?: config('mail.from.address');
-        $mailers = array_values(array_unique(array_filter([
-            config('mail.default'),
-            // cPanel often accepts local sendmail when remote SMTP auth fails
-            'sendmail',
-        ])));
-
-        $lastError = null;
-        foreach ($mailers as $mailer) {
-            try {
-                Mail::mailer($mailer)->to($to)->send(new BookingRequestMail($formName, $fields, $page));
-                $lastError = null;
-                break;
-            } catch (Throwable $e) {
-                $lastError = $e;
-                Log::warning('Booking request mailer failed', [
-                    'mailer' => $mailer,
-                    'error' => $e->getMessage(),
-                    'form' => $formName,
-                ]);
-            }
-        }
-
-        if ($lastError) {
-            // Request is already saved in booking-requests.log — do not fail the form
-            // just because SMTP is misconfigured on the host.
-            Log::error('Booking request mail failed on all mailers (request still saved)', [
-                'error' => $lastError->getMessage(),
-                'form' => $formName,
-            ]);
-        }
+        $mailed = OwnerMail::send($formName, $fields, $page);
 
         return response()->json([
             'success' => true,
-            'mailed' => $lastError === null,
+            'mailed' => $mailed,
         ]);
     }
 

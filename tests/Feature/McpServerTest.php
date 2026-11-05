@@ -42,6 +42,22 @@ class McpServerTest extends TestCase
         return ['error' => $result['isError'] ?? false, 'data' => json_decode($result['content'][0]['text'], true), 'text' => $result['content'][0]['text']];
     }
 
+    public function test_comments_can_be_listed_and_moderated(): void
+    {
+        $blog = Blog::query()->where('layout', 'like', '%"comments"%')->where('status', 'published')->firstOrFail();
+        $comment = $blog->comments()->create(['author' => 'Sara', 'email' => 'sara@example.com', 'body' => 'Nice post']);
+
+        $this->assertSame('Nice post', $this->tool('list_comments')['data']['comments'][0]['comment']);
+        $this->get('/'.$blog->slug.'/')->assertOk()->assertDontSee('Nice post');
+
+        $this->assertSame('approved', $this->tool('moderate_comment', ['id' => $comment->id, 'action' => 'approve'])['data']['comment']['status']);
+        $this->assertSame([], $this->tool('list_comments')['data']['comments']);
+        $this->get('/'.$blog->slug.'/')->assertOk()->assertSee('Nice post');
+
+        $this->tool('moderate_comment', ['id' => $comment->id, 'action' => 'reject']);
+        $this->get('/'.$blog->slug.'/')->assertOk()->assertDontSee('Nice post');
+    }
+
     public function test_a_bearer_token_is_required(): void
     {
         $this->rpc('tools/list', [], null)->assertStatus(401);
@@ -61,7 +77,7 @@ class McpServerTest extends TestCase
     {
         $tools = $this->rpc('tools/list')->assertOk()->json('result.tools');
 
-        $this->assertCount(42, $tools);
+        $this->assertCount(44, $tools);
         $this->assertContains('update_seo', array_column($tools, 'name'));
     }
 

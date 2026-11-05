@@ -245,26 +245,8 @@
                 </nav>
             @endif
 
-            @if ($comments)
-                <div id="comments" class="comments">
-                    <div id="respond" class="comment-respond">
-                        <h3 id="reply-title" class="comment-reply-title">Leave a Comment <small><a id="cancel-comment-reply-link" href="#respond" hidden>Cancel Reply</a></small></h3>
-                        <form action="%%BASE%%/wp-comments-post.php" method="post" class="comment-form">
-                            <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span>Required fields are marked <span class="required">*</span></span></p>
-                            <div class="comment-field">
-                                <label for="comment" class="screen-reader-text">Type here..</label>
-                                <textarea id="comment" name="comment" placeholder="Type here.." cols="45" rows="8" aria-required="true"></textarea>
-                            </div>
-                            <div class="comment-fields">
-                                <p><label for="author" class="screen-reader-text">Name*</label><input id="author" name="author" type="text" placeholder="Name*" size="30" aria-required="true" autocomplete="name"></p>
-                                <p><label for="email" class="screen-reader-text">Email*</label><input id="email" name="email" type="text" placeholder="Email*" size="30" aria-required="true" autocomplete="email"></p>
-                                <p><label for="url" class="screen-reader-text">Website</label><input id="url" name="url" type="text" placeholder="Website" size="30" autocomplete="url"></p>
-                            </div>
-                            <p class="comment-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
-                            <p class="comment-submit"><input name="submit" type="submit" id="submit" value="Post Comment"><input type="hidden" name="comment_post_ID" value="{{ $comments }}"><input type="hidden" name="comment_parent" value="0"></p>
-                        </form>
-                    </div>
-                </div>
+            @if ($comments instanceof \App\Models\Blog)
+                @include('partials.comments', ['blog' => $comments])
             @endif
         @endif
         </div>
