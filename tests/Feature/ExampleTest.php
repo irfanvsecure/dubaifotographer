@@ -25,6 +25,7 @@ class ExampleTest extends TestCase
         $this->get('/')->assertOk()->assertSee('<link rel="canonical" href="https://dubaifotographer.com/"/>', false);
         $this->get('/about-us/')->assertOk();
         $this->get('/locations/photographer-in-ajman/')->assertOk();
+        $this->get('/locations/photographer-in-dubai/')->assertOk()->assertSee('Professional Photographer in Dubai');
         $this->get('/privacy-policy/')->assertOk();
         $this->get('/brief-your-event-photographer-uae/')->assertOk()->assertSee('application/ld+json', false);
     }

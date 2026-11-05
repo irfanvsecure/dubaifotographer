@@ -11,7 +11,7 @@
 @php
     // [image, alt, url, city, text]
     $cities = [
-        ['2026/07/Dubai-skyline-Burj-Khalifa-768x512.webp', 'Dubai skyline with Burj Khalifa', '/', 'Dubai', 'Our home base. Corporate events, real estate, weddings and studio work across the city.'],
+        ['2026/07/Dubai-skyline-Burj-Khalifa-768x512.webp', 'Woman on the Dubai Marina promenade with towers behind her', '/locations/photographer-in-dubai', 'Dubai', 'Our home base. Corporate events, real estate, weddings and studio work across the city.'],
         ['2026/10/photographer-abu-dhabi-sheikh-zayed-grand-mosque-768x512.webp', 'Sheikh Zayed Grand Mosque reflected in a pool at sunset, Abu Dhabi', '/photographer-in-abu-dhabi', 'Abu Dhabi', 'Conferences, villa listings and family shoots from Yas Island to the Corniche.'],
         ['2026/10/photographer-sharjah-skyline-waterfront-768x576.webp', 'Sharjah waterfront skyline with high-rise buildings by the sea', '/locations/photographer-in-sharjah', 'Sharjah', 'School graduations, family portraits and product shoots across the emirate.'],
         ['2026/10/photographer-ajman-skyline-sunset-768x512.webp', 'Sun setting over the Ajman skyline', '/locations/photographer-in-ajman', 'Ajman', 'Family, maternity, newborn and small-business product photography.'],

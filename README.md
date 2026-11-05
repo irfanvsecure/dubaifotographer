@@ -189,7 +189,7 @@ php artisan view:cache
 
 `content:import` never overwrites rows that already exist, so running it again is safe. It reads `resources/views/*` (pages and posts), `resources/views/seo/*` (the old Yoast tags) and `resources/data/blog-posts.php`. Keep those files until the live import is done.
 
-Later deploys: `git pull`, `composer install --no-dev`, `php artisan migrate --force`, `php artisan content:sections` (moves newly converted pages into sections; pages that already have sections are skipped), `php artisan images:webp`, then the three cache commands.
+Later deploys: `git pull`, `composer install --no-dev`, `php artisan migrate --force`, `php artisan content:sections` (moves newly converted pages into sections; pages that already have sections are skipped), `php artisan images:webp`, then the three cache commands. A new Blade page (such as a new location view) also needs `php artisan content:import --dry-run`, then `php artisan content:import`, to create its database row.
 
 After editing CSS or JS in `public/assets`: `node scripts/minify-assets.mjs` (rebuilds the `.min` files the site serves).
 
