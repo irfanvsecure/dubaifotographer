@@ -38,6 +38,12 @@ return [
     ],
 
 
+    // Cloudflare Turnstile on the website forms; off until both are set (App\Support\Captcha)
+    'turnstile' => [
+        'site_key' => env('TURNSTILE_SITE_KEY'),
+        'secret_key' => env('TURNSTILE_SECRET_KEY'),
+    ],
+
     // bearer token for /api/mcp; only its hash is stored (php artisan mcp:token)
     'mcp' => [
         'token' => env('MCP_TOKEN'),

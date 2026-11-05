@@ -191,6 +191,8 @@ php artisan view:cache
 
 Later deploys: `git pull`, `composer install --no-dev`, `php artisan migrate --force`, `php artisan content:sections` (moves newly converted pages into sections; pages that already have sections are skipped), `php artisan images:webp`, then the three cache commands. A new Blade page (such as a new location view) also needs `php artisan content:import --dry-run`, then `php artisan content:import`, to create its database row.
 
+Captcha on the forms: Cloudflare Turnstile. Set `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` in the server `.env`, then run the cache commands. Without both keys the forms work with no captcha.
+
 After editing CSS or JS in `public/assets`: `node scripts/minify-assets.mjs` (rebuilds the `.min` files the site serves).
 
 ## Tests

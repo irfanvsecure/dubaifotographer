@@ -3031,6 +3031,12 @@ details[open] .faq-opened {
     line-height: 1;
 }
 
+/* Turnstile box: normal widget height, kept before it loads so the button does not jump */
+.form-captcha {
+    min-height: 65px;
+    margin-bottom: 12px;
+}
+
 .booking-form {
     display: flex;
     flex-wrap: wrap;

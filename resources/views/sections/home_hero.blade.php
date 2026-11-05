@@ -88,6 +88,7 @@
                         <label class="svc-label" for="svc-phone">Phone or WhatsApp</label>
                         <input id="svc-phone" type="tel" name="phone" placeholder="Phone or WhatsApp" required>
                     </div>
+                    @include('partials.captcha')
                     <div class="svc-step-buttons">
                         <button type="button" class="svc-back">Back</button>
                         <button type="submit">Get my quote</button>

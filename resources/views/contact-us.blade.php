@@ -158,6 +158,7 @@
                             </div>
                         </fieldset>
 
+                        @include('partials.captcha')
                         <div class="rf-submit">
                             <button class="btn" type="submit">Submit Now @include('partials.icon', ['name' => 'arrow-right'])</button>
                             <ul class="rf-assure">

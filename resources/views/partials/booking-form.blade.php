@@ -66,6 +66,7 @@
             @endforeach
         </select>
     </div>
+    @include('partials.captcha', ['class' => 'field field-full'])
     <div class="field field-full">
         <button type="submit">Submit Now</button>
     </div>

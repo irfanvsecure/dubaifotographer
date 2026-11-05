@@ -45,6 +45,7 @@
         <label class="screen-reader-text" for="quote-message">Message</label>
         <textarea id="quote-message" name="message" placeholder="Tell us about your shoot"></textarea>
     </div>
+    @include('partials.captcha', ['class' => 'field field-full'])
     <div class="field field-full">
         <button type="submit">Request My Quote</button>
     </div>

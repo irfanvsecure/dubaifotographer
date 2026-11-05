@@ -278,9 +278,53 @@
 
     /* ---------- Forms ---------- */
 
+    /* Turnstile loads on the first touch of a form, so a page view does not pay for it */
+    var captchaScript;
+
+    function renderCaptcha(form) {
+        var box = form.querySelector("[data-captcha]");
+        // offsetParent is null while the box sits in a hidden step of a 3-step form
+        if (!box || box.hasAttribute("data-widget") || !box.offsetParent) {
+            return;
+        }
+        if (!window.turnstile) {
+            if (!captchaScript) {
+                captchaScript = document.createElement("script");
+                captchaScript.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+                document.head.appendChild(captchaScript);
+            }
+            captchaScript.addEventListener("load", function () {
+                renderCaptcha(form);
+            });
+            return;
+        }
+        box.setAttribute("data-widget", window.turnstile.render(box, {
+            sitekey: box.getAttribute("data-captcha"),
+            theme: "light",
+            size: box.offsetWidth < 300 ? "compact" : "normal"
+        }));
+    }
+
     each("form[data-ajax]", function (form) {
+        var captcha = form.querySelector("[data-captcha]");
+        if (captcha) {
+            ["focusin", "click"].forEach(function (name) {
+                form.addEventListener(name, function () {
+                    renderCaptcha(form);
+                });
+            });
+        }
+
         form.addEventListener("submit", function (event) {
             event.preventDefault();
+            if (captcha) {
+                var token = form.querySelector("[name=cf-turnstile-response]");
+                if (!token || !token.value) {
+                    renderCaptcha(form);
+                    alert("Please complete the security check above the button, then submit again.");
+                    return;
+                }
+            }
             var button = form.querySelector("[type=submit]");
             if (button) {
                 button.disabled = true;
@@ -298,6 +342,10 @@
             }).catch(function () {
                 if (button) {
                     button.disabled = false;
+                }
+                // a token works once, so a retry needs a fresh one
+                if (captcha && window.turnstile && captcha.hasAttribute("data-widget")) {
+                    window.turnstile.reset(captcha.getAttribute("data-widget"));
                 }
                 alert("Could not send your request. Please try again or WhatsApp us on +971 52 294 6276.");
             });

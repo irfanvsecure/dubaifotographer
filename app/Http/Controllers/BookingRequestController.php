@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\BookingRequestMail;
+use App\Support\Captcha;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -12,8 +13,14 @@ use Throwable;
 
 class BookingRequestController extends Controller
 {
+    private const CAPTCHA_FIELD = 'cf-turnstile-response';
+
     public function __invoke(Request $request): JsonResponse
     {
+        if (! Captcha::verify($request->input(self::CAPTCHA_FIELD))) {
+            return response()->json(['success' => false, 'message' => 'Please complete the security check.'], 422);
+        }
+
         // Empty optional fields come through as "" from HTML forms
         foreach (['email', 'name', 'phone', 'message', 'form_name'] as $key) {
             if (! $request->filled($key)) {
@@ -30,7 +37,7 @@ class BookingRequestController extends Controller
         ] + $this->optionalFieldRules());
 
         $formName = $data['form_name'] ?? 'Website enquiry';
-        $fields = collect($request->except(['_token', 'form_name']))
+        $fields = collect($request->except(['_token', 'form_name', self::CAPTCHA_FIELD]))
             ->map(fn ($value) => is_string($value) ? trim($value) : $value)
             ->filter(fn ($value) => $value !== null && $value !== '')
             ->all();
