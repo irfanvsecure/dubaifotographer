@@ -13,21 +13,44 @@
     --grey: #eef1f5;
     position: relative;
     display: flex;
-    /* WebP copies of 2026/09/WhatsApp-Image-2026-09-22-at-12.43.58-AM.jpeg; preloaded in index.blade.php */
-    background: url("../../images/hero/home-hero-1280.webp") center / cover no-repeat;
+    /* WebP copies of the DSC09785 stage shot; preloaded in index.blade.php */
+    background: #111 url("../../images/hero/home-stage-1920.webp") center 20% / cover no-repeat;
 }
 
-@media (max-width: 767px) {
-    .hero {
-        background-image: url("../../images/hero/home-hero-768.webp");
-    }
-}
-
+/* the 20% above keeps the panel below the headline, next to the buttons, so only the
+   busy screen behind the headline gets the heavier top layer */
 .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.55) 100%);
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 58%, transparent 76%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.35) 30%, rgba(0, 0, 0, 0.15) 55%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* Stacked layout: "cover" would zoom a wide photo into a sliver of this tall section,
+   so the stage sits as a full-width band on top and fades into the copy. */
+@media (max-width: 1024px) {
+    .hero {
+        --hero-band: 46vw; /* where the fade ends and the copy area starts */
+        --hero-fade: 38vw;
+        background-image: url("../../images/hero/home-stage-band-1280.webp");
+        background-position: center -5vw; /* trims the wall so the copy stays on a landscape tablet's first screen */
+        background-size: 100% auto;
+    }
+
+    .hero::before {
+        background: linear-gradient(180deg, transparent var(--hero-fade), #111 var(--hero-band));
+    }
+}
+
+@media (max-width: 767px) {
+    .hero {
+        --hero-band: 62.5vw; /* the 16:10 image at full width */
+        --hero-fade: 42vw;
+        background-image: url("../../images/hero/home-stage-band-800.webp");
+        background-position: center top;
+    }
 }
 
 /* copy on the left, quote card on the right */
@@ -62,6 +85,7 @@
     font-family: var(--font-text);
     font-size: 17px;
     line-height: 1.65;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
 }
 
 .hero .svc-quote {
@@ -103,7 +127,7 @@
     .hero-inner {
         grid-template-columns: minmax(0, 1fr);
         gap: 40px;
-        padding: 60px 0;
+        padding: calc(var(--hero-band) - 40px) 0 60px;
     }
 
     .hero-copy {
@@ -126,7 +150,7 @@
     .hero-inner {
         width: calc(100% - 40px);
         gap: 32px;
-        padding: 40px 0 48px;
+        padding: calc(var(--hero-band) - 40px) 0 48px;
     }
 
     .hero h1 {

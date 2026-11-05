@@ -6,8 +6,9 @@
 
 @push('styles')
     {{-- the hero background (home.css) is the largest thing on screen: fetch it before the CSS asks for it --}}
-    <link rel="preload" as="image" type="image/webp" href="%%BASE%%/assets/images/hero/home-hero-768.webp" media="(max-width: 767px)" fetchpriority="high">
-    <link rel="preload" as="image" type="image/webp" href="%%BASE%%/assets/images/hero/home-hero-1280.webp" media="(min-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" type="image/webp" href="%%BASE%%/assets/images/hero/home-stage-band-800.webp" media="(max-width: 767px)" fetchpriority="high">
+    <link rel="preload" as="image" type="image/webp" href="%%BASE%%/assets/images/hero/home-stage-band-1280.webp" media="(min-width: 768px) and (max-width: 1024px)" fetchpriority="high">
+    <link rel="preload" as="image" type="image/webp" href="%%BASE%%/assets/images/hero/home-stage-1920.webp" media="(min-width: 1025px)" fetchpriority="high">
     <link rel="stylesheet" href="%%BASE%%/assets/vendor/swiper/swiper.min.css">
     <link rel="stylesheet" href="%%BASE%%/assets/css/pages/service.css">
     <link rel="stylesheet" href="%%BASE%%/assets/css/pages/home.css">
