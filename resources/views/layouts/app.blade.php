@@ -41,7 +41,6 @@
 
     <main id="content">
         @yield('content')
-        @include('partials.related-guides')
     </main>
 
     @include('partials.footer')
