@@ -1,6 +1,7 @@
 {{-- svc_coverage: emirates served, a card per location page --}}
 @php
     $places = [
+        ['Dubai', '/locations/photographer-in-dubai'],
         ['Abu Dhabi', '/photographer-in-abu-dhabi'],
         ['Sharjah', '/locations/photographer-in-sharjah'],
         ['Ajman', '/locations/photographer-in-ajman'],
